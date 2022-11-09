@@ -2,8 +2,8 @@ package co.edu.unbosque.view;
 
 public class MainView{
 	
-	private FirstView FV;
-	private LoginView LV;
+	private FirstView firstView;
+	private LoginView loginView;
 	
 	public MainView() {
 		
@@ -12,21 +12,29 @@ public class MainView{
 	}
 	
 	public void funcionar() {
-		FV = new FirstView();
-		FV.setSize(500, 500);
-		FV.setVisible(false);
+		firstView = new FirstView();
+	/*	firstView.setSize(500, 500);
+		firstView.setVisible(false);*/
 		
-		LV = new LoginView();
-		FV.setSize(700, 500);
-		FV.setVisible(false);
+		loginView = new LoginView();
+		loginView.setSize(700, 500);
+		loginView.setVisible(false);
 	}
 
-	public FirstView getFV() {
-		return FV;
+	public FirstView getFirstView() {
+		return firstView;
 	}
 
-	public LoginView getLV() {
-		return LV;
+	public void setFirstView(FirstView firstView) {
+		this.firstView = firstView;
 	}
-	
+
+	public LoginView getLoginView() {
+		return loginView;
+	}
+
+	public void setLoginView(LoginView loginView) {
+		this.loginView = loginView;
+	}
+
 }
