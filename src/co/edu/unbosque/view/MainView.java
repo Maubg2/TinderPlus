@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 public class MainView extends JFrame{
 	
 	private MainPanel MP;
+	private LoginView LV;
+	private RegisterView RV;
 	
 	public MainView() {
 		
@@ -43,7 +45,13 @@ public class MainView extends JFrame{
 		MP.setBounds(90, 80, 600, 400);
 		getContentPane().add(MP);
 		
+		LV = new LoginView();
+		LV.setBounds(90, 80, 600, 400);
+		getContentPane().add(LV);
 		
+		RV = new RegisterView();
+		RV.setBounds(90, 80, 600, 400);
+		getContentPane().add(RV);
 	}
 
 	public MainPanel getMP() {
@@ -52,6 +60,22 @@ public class MainView extends JFrame{
 
 	public void setMP(MainPanel mP) {
 		MP = mP;
+	}
+
+	public LoginView getLV() {
+		return LV;
+	}
+
+	public void setLV(LoginView lV) {
+		LV = lV;
+	}
+
+	public RegisterView getRV() {
+		return RV;
+	}
+
+	public void setRV(RegisterView rV) {
+		RV = rV;
 	}
 	
 }

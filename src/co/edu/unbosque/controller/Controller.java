@@ -11,6 +11,7 @@ public class Controller implements ActionListener{
 	
 	public Controller() {
 		MV = new MainView();
+		setListeners();
 	/*	MV.setSize(700,600);
 		MV.setLocationRelativeTo(null);
 		MV.setVisible(true);*/
@@ -29,8 +30,13 @@ public class Controller implements ActionListener{
 		switch(e.getActionCommand()) {
 		
 		case "iniciarSesion":
+			System.out.println("Debug");
+			MV.getMP().setVisible(false);
+			MV.getLV().setVisible(true);
 			break;
 		case "registrarse":
+			MV.getMP().setVisible(false);
+			MV.getRV().setVisible(true);
 			break;
 		default:
 			break;
