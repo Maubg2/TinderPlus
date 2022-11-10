@@ -5,6 +5,12 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+
+/**
+ * Clase que contiene los botones de iniciar sesion y registrarse
+ * 
+ * @author J&M Sistemas
+ */
 public class MainPanel extends JPanel{
 	
 	//private JLabel
@@ -24,4 +30,21 @@ public class MainPanel extends JPanel{
 		SignInButton.setBounds(120, 270, 170, 30);
 		add(SignInButton);
 	}
+
+	public JButton getLogInButton() {
+		return LogInButton;
+	}
+
+	public void setLogInButton(JButton logInButton) {
+		LogInButton = logInButton;
+	}
+
+	public JButton getSignInButton() {
+		return SignInButton;
+	}
+
+	public void setSignInButton(JButton signInButton) {
+		SignInButton = signInButton;
+	}
+	
 }

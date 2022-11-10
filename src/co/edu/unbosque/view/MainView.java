@@ -11,4 +11,13 @@ public class MainView extends JFrame{
 		MP = new MainPanel();
 		add(MP);
 	}
+
+	public MainPanel getMP() {
+		return MP;
+	}
+
+	public void setMP(MainPanel mP) {
+		MP = mP;
+	}
+	
 }
