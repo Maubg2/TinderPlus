@@ -11,9 +11,9 @@ public class Controller implements ActionListener{
 	
 	public Controller() {
 		MV = new MainView();
-		MV.setSize(700,600);
+	/*	MV.setSize(700,600);
 		MV.setLocationRelativeTo(null);
-		MV.setVisible(true);
+		MV.setVisible(true);*/
 	}
 	
 	public void setListeners() {
