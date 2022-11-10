@@ -28,23 +28,24 @@ public class MainPanel extends JPanel{
 		setLayout(null);
 		funcionar();
 		setVisible(true);
-//		setBackground(Color.BLUE);
+		//setOpaque(false);
+		setBackground(Color.decode("#FFA1CF"));
 		
 	}
 	
 	public void funcionar() {
 		LogInButton = new JButton("Iniciar sesión");
-		LogInButton.setBounds(200, 400, 170, 30);
+		LogInButton.setBounds(100, 260, 170, 30);
 		add(LogInButton);
 		
 		SignInButton = new JButton("Registrarse");
-		SignInButton.setBounds(400, 400, 170, 30);
+		SignInButton.setBounds(350, 260, 170, 30);
 		add(SignInButton);
 		
 		image = new ImageIcon("media/Tinder.png");
 		tinderTitle = new JLabel();
-		tinderTitle.setIcon(new ImageIcon(image.getImage().getScaledInstance(250, 170, Image.SCALE_SMOOTH)));
-		tinderTitle.setBounds(260, 10, 250, 170);
+		tinderTitle.setIcon(new ImageIcon(image.getImage().getScaledInstance(300, 230, Image.SCALE_SMOOTH)));
+		tinderTitle.setBounds(150, 5, 300, 230);
 		add(tinderTitle);
 	}
 
