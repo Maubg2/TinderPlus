@@ -41,7 +41,7 @@ public class MainPanel extends JPanel{
 		SignInButton.setBounds(400, 400, 170, 30);
 		add(SignInButton);
 		
-		image = new ImageIcon("Tinder.png");
+		image = new ImageIcon("media/Tinder.png");
 		tinderTitle = new JLabel();
 		tinderTitle.setIcon(new ImageIcon(image.getImage().getScaledInstance(250, 170, Image.SCALE_SMOOTH)));
 		tinderTitle.setBounds(260, 10, 250, 170);
