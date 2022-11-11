@@ -95,4 +95,12 @@ public class RegisterView extends JPanel{
 		this.nextButton = nextButton;
 	}
 
+	public JTextField getNameField() {
+		return nameField;
+	}
+
+	public void setNameField(JTextField nameField) {
+		this.nameField = nameField;
+	}
+
 }

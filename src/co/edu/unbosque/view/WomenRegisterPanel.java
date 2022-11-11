@@ -2,6 +2,7 @@ package co.edu.unbosque.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -32,6 +33,12 @@ public class WomenRegisterPanel extends GeneralRegister{
 		divorcedWRPLabel.setBounds(44, 240, 150, 24);
 		add(divorcedWRPLabel);
 		
+	}
+	
+	public ArrayList<Object> collectWomenData(){
+		ArrayList<Object> returnableData = super.collectData();
+		returnableData.add(divorcedWRPCheck.isSelected());
+		return returnableData;
 	}
 	
 }

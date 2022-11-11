@@ -2,6 +2,7 @@ package co.edu.unbosque.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -13,14 +14,14 @@ import javax.swing.border.EtchedBorder;
 public class GeneralRegister extends JPanel{
 	
 	protected JLabel title;
-	protected JLabel usernameWomenRegLabel;
-	protected JTextField usernameWomenRegField;
-	protected JLabel ageWomenRegLabel;
-	protected JTextField ageWomenRegField;
-	protected JLabel mailWomenRegLabel;
-	protected JTextField mailWomenRegField;
-	protected JLabel heightWomenRegLabel;
-	protected JTextField heightWomenRegField;
+	protected JLabel usernameRegLabel;
+	protected JTextField usernameRegField;
+	protected JLabel ageRegLabel;
+	protected JTextField ageRegField;
+	protected JLabel mailRegLabel;
+	protected JTextField mailRegField;
+	protected JLabel heightRegLabel;
+	protected JTextField heightRegField;
 	protected JLabel optionalHeight;
 	protected JCheckBox checkBox;
 	
@@ -35,44 +36,44 @@ public class GeneralRegister extends JPanel{
 		add(title);
 		
 		//Username section
-		usernameWomenRegLabel = new JLabel("Nombre completo: ");
-		usernameWomenRegLabel.setBounds(42, 80, 120, 100);
-		usernameWomenRegLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		add(usernameWomenRegLabel);
+		usernameRegLabel = new JLabel("Nombre completo: ");
+		usernameRegLabel.setBounds(42, 80, 120, 100);
+		usernameRegLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		add(usernameRegLabel);
 				
-		usernameWomenRegField = new JTextField();
-		usernameWomenRegField.setBounds(160, 118, 180, 24);
-		add(usernameWomenRegField);
+		usernameRegField = new JTextField();
+		usernameRegField.setBounds(160, 118, 180, 24);
+		add(usernameRegField);
 				
 		//Age section
-		ageWomenRegLabel = new JLabel("Edad: ");
-		ageWomenRegLabel.setBounds(120, 124, 80, 80);
-		ageWomenRegLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		add(ageWomenRegLabel);
+		ageRegLabel = new JLabel("Edad: ");
+		ageRegLabel.setBounds(120, 124, 80, 80);
+		ageRegLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		add(ageRegLabel);
 				
-		ageWomenRegField = new JTextField();
-		ageWomenRegField.setBounds(160, 150, 100, 24);
-		add(ageWomenRegField);
+		ageRegField = new JTextField();
+		ageRegField.setBounds(160, 150, 100, 24);
+		add(ageRegField);
 				
 		//Mail section
-		mailWomenRegLabel = new JLabel("Correo: ");
-		mailWomenRegLabel.setBounds(104, 154, 100, 80);
-		mailWomenRegLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		add(mailWomenRegLabel);
+		mailRegLabel = new JLabel("Correo: ");
+		mailRegLabel.setBounds(104, 154, 100, 80);
+		mailRegLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		add(mailRegLabel);
 				
-		mailWomenRegField = new JTextField();
-		mailWomenRegField.setBounds(160, 180, 100, 24);
-		add(mailWomenRegField);
+		mailRegField = new JTextField();
+		mailRegField.setBounds(160, 180, 100, 24);
+		add(mailRegField);
 				
 		//Height section
-		heightWomenRegLabel = new JLabel("Altura: ");
-		heightWomenRegLabel.setBounds(108, 182, 100, 80);
-		heightWomenRegLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		add(heightWomenRegLabel);
+		heightRegLabel = new JLabel("Altura: ");
+		heightRegLabel.setBounds(108, 182, 100, 80);
+		heightRegLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		add(heightRegLabel);
 				
-		heightWomenRegField = new JTextField();
-		heightWomenRegField.setBounds(160, 210, 100, 24);
-		add(heightWomenRegField);
+		heightRegField = new JTextField();
+		heightRegField.setBounds(160, 210, 100, 24);
+		add(heightRegField);
 		
 		//Button section
 		exitButton = new JButton("Salir");
@@ -92,5 +93,79 @@ public class GeneralRegister extends JPanel{
 		add(nextButton);
 		
 	}
+	
+	public ArrayList<Object> collectData(){
+		ArrayList<Object> returnableData = new ArrayList<Object>();
+		returnableData.add(usernameRegField.getText());
+		returnableData.add(ageRegField.getText());
+		returnableData.add(mailRegField.getText());
+		returnableData.add(heightRegField.getText());
+		return returnableData;
+		
+	}
 
+	public JTextField getUsernameRegField() {
+		return usernameRegField;
+	}
+
+	public void setUsernameRegField(JTextField usernameRegField) {
+		this.usernameRegField = usernameRegField;
+	}
+
+	public JTextField getAgeRegField() {
+		return ageRegField;
+	}
+
+	public void setAgeRegField(JTextField ageRegField) {
+		this.ageRegField = ageRegField;
+	}
+
+	public JTextField getMailRegField() {
+		return mailRegField;
+	}
+
+	public void setMailRegField(JTextField mailRegField) {
+		this.mailRegField = mailRegField;
+	}
+
+	public JTextField getHeightRegField() {
+		return heightRegField;
+	}
+
+	public void setHeightRegField(JTextField heightRegField) {
+		this.heightRegField = heightRegField;
+	}
+
+	public JLabel getOptionalHeight() {
+		return optionalHeight;
+	}
+
+	public void setOptionalHeight(JLabel optionalHeight) {
+		this.optionalHeight = optionalHeight;
+	}
+
+	public JCheckBox getCheckBox() {
+		return checkBox;
+	}
+
+	public void setCheckBox(JCheckBox checkBox) {
+		this.checkBox = checkBox;
+	}
+
+	public JButton getExitButton() {
+		return exitButton;
+	}
+
+	public void setExitButton(JButton exitButton) {
+		this.exitButton = exitButton;
+	}
+
+	public JButton getNextButton() {
+		return nextButton;
+	}
+
+	public void setNextButton(JButton nextButton) {
+		this.nextButton = nextButton;
+	}
+	
 }
