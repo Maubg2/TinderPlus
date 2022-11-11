@@ -7,6 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
 
 public class MenRegisterPanel extends JPanel{
 	
@@ -79,10 +81,18 @@ public class MenRegisterPanel extends JPanel{
 		//Buttons section
 		exitMRVButton = new JButton("Salir");
 		exitMRVButton.setBounds(40, 330, 80, 30);
+		exitMRVButton.setBackground(Color.decode("#EA047E"));
+		exitMRVButton.setBorder(new EtchedBorder(100));
+		exitMRVButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		exitMRVButton.setForeground(Color.WHITE);
 		add(exitMRVButton);
 		
 		nextMRVButton = new JButton("Terminar");
 		nextMRVButton.setBounds(440, 330, 120, 30);
+		nextMRVButton.setBackground(Color.decode("#EA047E"));
+		nextMRVButton.setBorder(new EtchedBorder(100));
+		nextMRVButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		nextMRVButton.setForeground(Color.WHITE);
 		add(nextMRVButton);
 	}
 

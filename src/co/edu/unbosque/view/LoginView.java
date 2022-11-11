@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
 
 public class LoginView extends JPanel{
 	
@@ -59,10 +60,18 @@ public class LoginView extends JPanel{
 		//Buttons
 		backButton = new JButton("Volver");
 		backButton.setBounds(180, 300, 110, 30);
+		backButton.setBackground(Color.decode("#EA047E"));
+		backButton.setBorder(new EtchedBorder(100));
+		backButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		backButton.setForeground(Color.WHITE);
 		add(backButton);
 		
 		loginButton = new JButton("Iniciar sesión");
 		loginButton.setBounds(310, 300, 110, 30);
+		loginButton.setBackground(Color.decode("#EA047E"));
+		loginButton.setBorder(new EtchedBorder(100));
+		loginButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		loginButton.setForeground(Color.WHITE);
 		add(loginButton);
 		
 	}

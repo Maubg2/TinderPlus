@@ -8,6 +8,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
 
 public class RegisterView extends JPanel{
 	
@@ -35,10 +37,18 @@ public class RegisterView extends JPanel{
 		
 		nextButton = new JButton("Siguiente");
 		nextButton.setBounds(300, 300, 90, 25);
+		nextButton.setBackground(Color.decode("#EA047E"));
+		nextButton.setBorder(new EtchedBorder(100));
+		nextButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		nextButton.setForeground(Color.WHITE);
 		add(nextButton);
 		
 		leaveButton = new JButton("Salir");
 		leaveButton.setBounds(200, 300, 90, 25);
+		leaveButton.setBackground(Color.decode("#EA047E"));
+		leaveButton.setBorder(new EtchedBorder(100));
+		leaveButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		leaveButton.setForeground(Color.WHITE);
 		add(leaveButton);
 		
 		registerGenderBox = new JComboBox(listBox);

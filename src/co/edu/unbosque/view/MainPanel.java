@@ -1,12 +1,16 @@
 package co.edu.unbosque.view;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
 
 
 /**
@@ -36,10 +40,18 @@ public class MainPanel extends JPanel{
 	public void funcionar() {
 		LogInButton = new JButton("Iniciar sesión");
 		LogInButton.setBounds(100, 260, 170, 30);
+		LogInButton.setBackground(Color.decode("#EA047E"));
+		LogInButton.setBorder(new EtchedBorder(100));
+		LogInButton.setForeground(Color.WHITE);
+		LogInButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(LogInButton);
 		
 		SignInButton = new JButton("Registrarse");
 		SignInButton.setBounds(350, 260, 170, 30);
+		SignInButton.setBackground(Color.decode("#EA047E"));
+		SignInButton.setBorder(new EtchedBorder(100));
+		SignInButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		SignInButton.setForeground(Color.WHITE);
 		add(SignInButton);
 		
 		image = new ImageIcon("media/Tinder.png");
