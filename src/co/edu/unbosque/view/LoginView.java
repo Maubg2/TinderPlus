@@ -15,7 +15,7 @@ public class LoginView extends JPanel{
 	private JTextField userField;
 	private JLabel psswdLabel;
 	private JTextField psswdField;
-	private JButton back;
+	private JButton backButton;
 	private JButton loginButton;
 	
 	
@@ -57,9 +57,9 @@ public class LoginView extends JPanel{
 		add(psswdField);
 		
 		//Buttons
-		back = new JButton("Volver");
-		back.setBounds(160, 300, 110, 30);
-		add(back);
+		backButton = new JButton("Volver");
+		backButton.setBounds(160, 300, 110, 30);
+		add(backButton);
 		
 		loginButton = new JButton("Iniciar sesión");
 		loginButton.setBounds(290, 300, 110, 30);
@@ -107,12 +107,12 @@ public class LoginView extends JPanel{
 		this.psswdField = psswdField;
 	}
 
-	public JButton getBack() {
-		return back;
+	public JButton getBackButton() {
+		return backButton;
 	}
 
-	public void setBack(JButton back) {
-		this.back = back;
+	public void setBackButton(JButton back) {
+		this.backButton = back;
 	}
 
 	public JButton getLoginButton() {

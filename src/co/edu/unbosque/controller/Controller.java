@@ -18,10 +18,24 @@ public class Controller implements ActionListener{
 	}
 	
 	public void setListeners() {
+		//MainPanel Listeners
 		MV.getMP().getLogInButton().addActionListener(this);
 		MV.getMP().getLogInButton().setActionCommand("iniciarSesion");
 		MV.getMP().getSignInButton().addActionListener(this);
 		MV.getMP().getSignInButton().setActionCommand("registrarse");
+		
+		//LoginView Listeners
+		MV.getLV().getBackButton().addActionListener(this);
+		MV.getLV().getBackButton().setActionCommand("backLoginView");
+		MV.getLV().getLoginButton().addActionListener(this);
+		MV.getLV().getLoginButton().setActionCommand("loginButtonLoginView");
+		
+		//RegisterView Listener
+		MV.getRV().getLeaveButton().addActionListener(this);
+		MV.getRV().getLeaveButton().setActionCommand("backRegisterView");
+		MV.getRV().getNextButton().addActionListener(this);
+		MV.getRV().getNextButton().setActionCommand("nextButtonRegisterView");
+		
 	}
 
 	@Override
@@ -38,6 +52,14 @@ public class Controller implements ActionListener{
 			MV.getMP().setVisible(false);
 			MV.getRV().setVisible(true);
 			break;
+		case "backLoginView":
+			MV.getLV().setVisible(false);
+			MV.getMP().setVisible(true);
+		case "loginButton":
+			break;
+		case "backRegisterView":
+			MV.getRV().setVisible(false);
+			MV.getMP().setVisible(true);
 		default:
 			break;
 		

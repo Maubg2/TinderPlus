@@ -11,8 +11,8 @@ import javax.swing.JTextField;
 
 public class RegisterView extends JPanel{
 	
-	private JButton leave;
-	private JButton next;
+	private JButton leaveButton;
+	private JButton nextButton;
 	private JLabel title;
 	private JLabel questionBox;
 	private JLabel userName;
@@ -30,33 +30,49 @@ public class RegisterView extends JPanel{
 	public void funcionar() {
 		title = new JLabel("Registrarse");
 		title.setFont(new Font("Times New Roman", Font.BOLD, 30));
-		title.setBounds(200, 20, 190, 80);
+		title.setBounds(210, 20, 190, 80);
 		add(title);
 		
-		next = new JButton("Siguiente");
-		next.setBounds(280, 300, 90, 25);
-		add(next);
+		nextButton = new JButton("Siguiente");
+		nextButton.setBounds(290, 300, 90, 25);
+		add(nextButton);
 		
-		leave = new JButton("Salir");
-		leave.setBounds(180, 300, 90, 25);
-		add(leave);
+		leaveButton = new JButton("Salir");
+		leaveButton.setBounds(190, 300, 90, 25);
+		add(leaveButton);
 		
 		box = new JComboBox(listBox);
-		box.setBounds(100, 200, 100, 30);
+		box.setBounds(300, 200, 100, 30);
 		add(box);
 		
 		questionBox = new JLabel("Ponga su género:");
-		questionBox.setBounds(1, 1, 150, 25);
+		questionBox.setBounds(150, 200, 150, 25);
 		add(questionBox);
 		
 		userName = new JLabel("Nombre de usuario:");
-		userName.setBounds(200, 250, 160, 30);
+		userName.setBounds(150, 150, 160, 30);
 		add(userName);
 		
 		nameField = new JTextField();
-		nameField.setBounds(300, 250, 160, 30);
+		nameField.setBounds(300, 150, 160, 30);
 		add(nameField);
 		
+	}
+
+	public JButton getLeaveButton() {
+		return leaveButton;
+	}
+
+	public void setLeaveButton(JButton leaveButton) {
+		this.leaveButton = leaveButton;
+	}
+
+	public JButton getNextButton() {
+		return nextButton;
+	}
+
+	public void setNextButton(JButton nextButton) {
+		this.nextButton = nextButton;
 	}
 
 }
