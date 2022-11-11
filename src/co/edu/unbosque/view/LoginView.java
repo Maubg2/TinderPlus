@@ -33,7 +33,7 @@ public class LoginView extends JPanel{
 		//Title
 		loginTitle = new JLabel("Iniciar sesión");
 		loginTitle.setFont(new Font("Times New Roman", Font.BOLD, 30));
-		loginTitle.setBounds(200, 20, 190, 80);
+		loginTitle.setBounds(210, 20, 190, 80);
 		add(loginTitle);
 			
 		//User section
@@ -49,20 +49,20 @@ public class LoginView extends JPanel{
 		//Password section
 		psswdLabel = new JLabel("Contraseña: ");
 		psswdLabel.setFont(new Font("Times New Roman", Font.BOLD, 18));
-		psswdLabel.setBounds(90, 200, 120, 50);
+		psswdLabel.setBounds(90, 160, 120, 50);
 		add(psswdLabel);
 				
 		psswdField = new JTextField();
-		psswdField.setBounds(200, 210, 200, 30);
+		psswdField.setBounds(200, 170, 200, 30);
 		add(psswdField);
 		
 		//Buttons
 		backButton = new JButton("Volver");
-		backButton.setBounds(160, 300, 110, 30);
+		backButton.setBounds(180, 300, 110, 30);
 		add(backButton);
 		
 		loginButton = new JButton("Iniciar sesión");
-		loginButton.setBounds(290, 300, 110, 30);
+		loginButton.setBounds(310, 300, 110, 30);
 		add(loginButton);
 		
 	}

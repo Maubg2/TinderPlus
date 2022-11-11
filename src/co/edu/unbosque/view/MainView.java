@@ -14,7 +14,16 @@ public class MainView extends JFrame{
 	
 	private MainPanel MP;
 	private LoginView LV;
+	
+	//Register
 	private RegisterView RV;
+	private MenRegisterPanel MRV;
+	
+	//Settings
+	final int xPanel = 90;
+	final int yPanel = 80;
+	final int widthPanel = 600;
+	final int heightPanel = 400;
 	
 	public MainView() {
 		
@@ -42,16 +51,28 @@ public class MainView extends JFrame{
 	public void funcionar() {
 		
 		MP = new MainPanel();
-		MP.setBounds(90, 80, 600, 400);
+		MP.setBounds(xPanel, yPanel, 600, 400);
 		getContentPane().add(MP);
 		
 		LV = new LoginView();
-		LV.setBounds(90, 80, 600, 400);
+		LV.setBounds(xPanel, yPanel, 600, 400);
 		getContentPane().add(LV);
 		
 		RV = new RegisterView();
-		RV.setBounds(90, 80, 600, 400);
+		RV.setBounds(xPanel, yPanel, 600, 400);
 		getContentPane().add(RV);
+		
+		MRV  = new MenRegisterPanel();
+		MRV.setBounds(xPanel,yPanel, widthPanel, heightPanel);
+		getContentPane().add(MRV);
+	}
+
+	public MenRegisterPanel getMRV() {
+		return MRV;
+	}
+
+	public void setMRV(MenRegisterPanel mRV) {
+		MRV = mRV;
 	}
 
 	public MainPanel getMP() {

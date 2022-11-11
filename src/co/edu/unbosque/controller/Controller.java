@@ -30,12 +30,17 @@ public class Controller implements ActionListener{
 		MV.getLV().getLoginButton().addActionListener(this);
 		MV.getLV().getLoginButton().setActionCommand("loginButtonLoginView");
 		
-		//RegisterView Listener
+		//RegisterView Listeners
 		MV.getRV().getLeaveButton().addActionListener(this);
 		MV.getRV().getLeaveButton().setActionCommand("backRegisterView");
 		MV.getRV().getNextButton().addActionListener(this);
 		MV.getRV().getNextButton().setActionCommand("nextButtonRegisterView");
 		
+		//MenRegisterView Listeners
+		MV.getMRV().getExitMRVButton().addActionListener(this);
+		MV.getMRV().getExitMRVButton().setActionCommand("exitMRV");
+		MV.getMRV().getNextMRVButton().addActionListener(this);
+		MV.getMRV().getNextMRVButton().setActionCommand("nextMRV");
 	}
 
 	@Override
@@ -55,12 +60,37 @@ public class Controller implements ActionListener{
 		case "backLoginView":
 			MV.getLV().setVisible(false);
 			MV.getMP().setVisible(true);
+			break;
 		case "loginButton":
 			break;
 		case "backRegisterView":
 			MV.getRV().setVisible(false);
 			MV.getMP().setVisible(true);
-		default:
+			break;
+		case "nextButtonRegisterView":
+			String resRegisterComboBoxMV = MV.getRV().getRegisterGenderBox().getSelectedItem().toString().toLowerCase();
+			
+			switch(resRegisterComboBoxMV) {
+			case "hombre":
+				MV.getRV().setVisible(false);
+				MV.getMRV().setVisible(true);
+				break;
+			case "mujer": 
+				System.out.println("Seleccionó mujer");
+				break;
+			}
+			break;
+		
+		case "exitMRV":
+			MV.getMRV().setVisible(false);
+			MV.getMP().setVisible(true);
+			break;
+		case "nextMRV":
+			MV.getMRV().setVisible(false);
+			MV.getMP().setVisible(true);
+			break;
+			
+			default:
 			break;
 		
 		}
