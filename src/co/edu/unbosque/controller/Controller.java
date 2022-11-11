@@ -37,10 +37,7 @@ public class Controller implements ActionListener{
 		MV.getRV().getNextButton().setActionCommand("nextButtonRegisterView");
 		
 		//MenRegisterView Listeners
-		MV.getMRV().getExitMRVButton().addActionListener(this);
-		MV.getMRV().getExitMRVButton().setActionCommand("exitMRV");
-		MV.getMRV().getNextMRVButton().addActionListener(this);
-		MV.getMRV().getNextMRVButton().setActionCommand("nextMRV");
+	
 	}
 
 	@Override
@@ -76,6 +73,8 @@ public class Controller implements ActionListener{
 				MV.getMRV().setVisible(true);
 				break;
 			case "mujer": 
+				MV.getRV().setVisible(false);
+				MV.getWRP().setVisible(true);
 				System.out.println("Seleccionó mujer");
 				break;
 			}

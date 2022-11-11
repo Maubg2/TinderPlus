@@ -18,6 +18,7 @@ public class MainView extends JFrame{
 	//Register
 	private RegisterView RV;
 	private MenRegisterPanel MRV;
+	private WomenRegisterPanel WRP;
 	
 	//Settings
 	final int xPanel = 90;
@@ -65,6 +66,10 @@ public class MainView extends JFrame{
 		MRV  = new MenRegisterPanel();
 		MRV.setBounds(xPanel,yPanel, widthPanel, heightPanel);
 		getContentPane().add(MRV);
+		
+		WRP = new WomenRegisterPanel();
+		WRP.setBounds(xPanel,yPanel, widthPanel, heightPanel);
+		getContentPane().add(WRP);
 	}
 
 	public MenRegisterPanel getMRV() {
@@ -97,6 +102,14 @@ public class MainView extends JFrame{
 
 	public void setRV(RegisterView rV) {
 		RV = rV;
+	}
+
+	public WomenRegisterPanel getWRP() {
+		return WRP;
+	}
+
+	public void setWRP(WomenRegisterPanel wRP) {
+		WRP = wRP;
 	}
 	
 }
