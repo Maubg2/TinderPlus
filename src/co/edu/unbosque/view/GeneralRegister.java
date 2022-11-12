@@ -104,7 +104,7 @@ public class GeneralRegister extends JPanel{
 		
 	}
 
-	public JTextField getUsernameRegField() {
+	public JTextField getUsernameRegField() { //Nombre completo
 		return usernameRegField;
 	}
 
