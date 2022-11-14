@@ -41,6 +41,7 @@ public class RegisterView extends JPanel{
 		nextButton.setBorder(new EtchedBorder(100));
 		nextButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		nextButton.setForeground(Color.WHITE);
+		nextButton.setFocusable(false);
 		add(nextButton);
 		
 		leaveButton = new JButton("Salir");
@@ -49,6 +50,7 @@ public class RegisterView extends JPanel{
 		leaveButton.setBorder(new EtchedBorder(100));
 		leaveButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		leaveButton.setForeground(Color.WHITE);
+		leaveButton.setFocusable(false);
 		add(leaveButton);
 		
 		registerGenderBox = new JComboBox(listBox);

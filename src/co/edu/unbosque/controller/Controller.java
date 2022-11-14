@@ -101,7 +101,7 @@ public class Controller implements ActionListener{
 			String resUsernameFieldRegister = MV.getRV().getNameField().getText();
 			
 			if(resUsernameFieldRegister.isEmpty()) {
-				JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
+				JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Información", JOptionPane.WARNING_MESSAGE); //INFORMATION_MESSAGE, QUESTION_MESSAGE, WARNING_MESSAGE, ERROR_MESSAGE
 			}else {
 				switch(resRegisterComboBoxMV) {
 				case "hombre":
@@ -162,7 +162,7 @@ public class Controller implements ActionListener{
 				//User newUser = UserFactory.createMan(username, Integer.parseInt(age), email, "hombre", Integer.parseInt(height), Integer.parseInt(salary), name);
 				//DTO.addUser(newUser);
 			//} else if(name == null || age == null || username == null || email == null || height == null || salary == null) {
-				JOptionPane.showMessageDialog(null, "Error :)");
+				JOptionPane.showMessageDialog(null, "Error :)", "información", JOptionPane.PLAIN_MESSAGE);
 			}
 													
 			

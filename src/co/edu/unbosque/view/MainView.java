@@ -34,7 +34,11 @@ public class MainView extends JFrame{
 		Image newimg = image.getScaledInstance(850, 800,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 		imageIcon = new ImageIcon(newimg);  // transform it back
 		setContentPane(new JLabel(imageIcon));
+		//setUndecorated(true);
 		
+		//Frame icon
+		ImageIcon frameIcon = new ImageIcon("media/pngegg.png");
+		this.setIconImage(frameIcon.getImage());
 		
 		funcionar();
 		

@@ -26,6 +26,9 @@ public class WomenRegisterPanel extends GeneralRegister{
 		divorcedWRPCheck = new JCheckBox();
 		divorcedWRPCheck.setBounds(200, 242, 20, 20);
 		divorcedWRPCheck.setOpaque(false);
+		//divorcedWRPCheck.setText(); Para ponerle texto sin usar un Label
+		//divor....setIcon(); //Para cambiar el icono de desmarcado; divor....setSelectedIcon() //Para cambiar el ícono de marcado
+		divorcedWRPCheck.setFocusable(false);
 		add(divorcedWRPCheck);
 		
 		divorcedWRPLabel = new JLabel("Se ha divorciado:");

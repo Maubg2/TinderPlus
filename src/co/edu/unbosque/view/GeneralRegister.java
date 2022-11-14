@@ -31,7 +31,7 @@ public class GeneralRegister extends JPanel{
 	public GeneralRegister() {
 		
 		title = new JLabel("Registrarse");
-		title.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		title.setFont(new Font("Times New Roman", Font.BOLD, 30)); //Font: MV Boli
 		title.setBounds(220, 20, 190, 80);
 		add(title);
 		
@@ -82,6 +82,7 @@ public class GeneralRegister extends JPanel{
 		exitButton.setBorder(new EtchedBorder(100));
 		exitButton.setFont(new Font("Times new Roman", Font.BOLD, 14));
 		exitButton.setForeground(Color.WHITE);
+		exitButton.setFocusable(false);
 		add(exitButton);
 		
 		nextButton = new JButton("Terminar");
@@ -90,6 +91,8 @@ public class GeneralRegister extends JPanel{
 		nextButton.setBorder(new EtchedBorder(100));
 		nextButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		nextButton.setForeground(Color.WHITE);
+		nextButton.setFocusable(false);
+		//nextButton.setMnemonic(); Para que se presione el botón al presionar enter
 		add(nextButton);
 		
 	}

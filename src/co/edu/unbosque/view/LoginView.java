@@ -64,6 +64,11 @@ public class LoginView extends JPanel{
 		backButton.setBorder(new EtchedBorder(100));
 		backButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		backButton.setForeground(Color.WHITE);
+		backButton.setFocusable(false);
+		//backButton.setIcon(); //Para agregarle imágenes al botón
+		//backButton.setHorizontalTextPosition();
+		//backButton.setVerticalTextPosition();
+		//backButton.setIconTextGap();
 		add(backButton);
 		
 		loginButton = new JButton("Iniciar sesión");
@@ -72,6 +77,7 @@ public class LoginView extends JPanel{
 		loginButton.setBorder(new EtchedBorder(100));
 		loginButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		loginButton.setForeground(Color.WHITE);
+		loginButton.setFocusable(false);
 		add(loginButton);
 		
 	}
