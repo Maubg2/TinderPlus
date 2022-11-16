@@ -100,7 +100,8 @@ public class Controller implements ActionListener{
 			boolean validUser = DTO.checkUser(username, password);
 			if(validUser) {
 				//System.out.println("Usuario existe");
-				JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso");
+				MV.getLV().setVisible(false);
+				MV.getMUV().setVisible(true);
 			}else {
 				//System.out.println("Usuario no existe");
 				JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
