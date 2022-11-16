@@ -10,8 +10,8 @@ import java.awt.event.ActionListener;
 import co.edu.unbosque.model.AppDTO;
 import co.edu.unbosque.model.Toolkit;
 import co.edu.unbosque.model.User;
+import co.edu.unbosque.model.UserFactory;
 import co.edu.unbosque.view.MainView;
-import co.edu.unbosque.view.UserFactory;
 
 public class Controller implements ActionListener{
 	
@@ -36,6 +36,7 @@ public class Controller implements ActionListener{
 	/*	MV.setSize(700,600);
 		MV.setLocationRelativeTo(null);
 		MV.setVisible(true);*/
+		//DTO.displayDB(); //Debug
 	}
 	
 	public void setListeners() {
@@ -87,8 +88,23 @@ public class Controller implements ActionListener{
 			MV.getLV().setVisible(false);
 			MV.getMP().setVisible(true);
 			break;
-		case "loginButton":
+		case "loginButtonLoginView":
 			//Pendiente
+			//1. Traer datos de los fields
+			
+			//Para probar: User: juagalindo Password: P,u[2PyrjNM_:_9
+			
+			String username = MV.getLV().getUserField().getText();
+			String password = String.valueOf(MV.getLV().getPsswdField().getPassword()); //ValueOf porque getPassword devuelve un array de chars
+			//2. Mandar a buscar el usuario con esos datos
+			boolean validUser = DTO.checkUser(username, password);
+			if(validUser) {
+				//System.out.println("Usuario existe");
+				JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso");
+			}else {
+				//System.out.println("Usuario no existe");
+				JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
+			}
 			break;
 		case "backRegisterView":
 			MV.getRV().setVisible(false);

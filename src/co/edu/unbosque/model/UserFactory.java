@@ -1,8 +1,4 @@
-package co.edu.unbosque.view;
-
-import co.edu.unbosque.model.Man;
-import co.edu.unbosque.model.User;
-import co.edu.unbosque.model.Woman;
+package co.edu.unbosque.model;
 
 public class UserFactory {
 	
