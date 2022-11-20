@@ -19,7 +19,6 @@ public class AppDTO implements AppDAO{
 	BufferedReader reader = null;
 	String line = "";
 	
-	
 	public AppDTO() {
 		
 	}
@@ -116,5 +115,17 @@ public class AppDTO implements AppDAO{
 				e.printStackTrace();
 			}
 		}
+	}
+
+	@Override
+	public boolean checkAdmin(String username, String password) {
+		
+		String username1 = "administrador";
+		String password1 = "1234";
+		
+		if(username.equals(username1) && password.equals(password1)) {
+			return true;
+		}
+		return false;
 	}
 }

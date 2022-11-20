@@ -8,4 +8,5 @@ public interface AppDAO {
 	
 	void displayDB(); //Debug
 	boolean checkUser(String username, String password);
+	boolean checkAdmin(String username, String password);
 }
