@@ -6,6 +6,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
@@ -15,7 +16,7 @@ public class LoginView extends JPanel{
 	private JLabel userLabel;
 	private JTextField userField;
 	private JLabel psswdLabel;
-	private JTextField psswdField;
+	private JPasswordField psswdField;
 	private JButton backButton;
 	private JButton loginButton;
 	
@@ -53,7 +54,7 @@ public class LoginView extends JPanel{
 		psswdLabel.setBounds(90, 160, 120, 50);
 		add(psswdLabel);
 				
-		psswdField = new JTextField();
+		psswdField = new JPasswordField();
 		psswdField.setBounds(200, 170, 200, 30);
 		add(psswdField);
 		
@@ -64,6 +65,11 @@ public class LoginView extends JPanel{
 		backButton.setBorder(new EtchedBorder(100));
 		backButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		backButton.setForeground(Color.WHITE);
+		backButton.setFocusable(false);
+		//backButton.setIcon(); //Para agregarle imágenes al botón
+		//backButton.setHorizontalTextPosition();
+		//backButton.setVerticalTextPosition();
+		//backButton.setIconTextGap();
 		add(backButton);
 		
 		loginButton = new JButton("Iniciar sesión");
@@ -72,6 +78,7 @@ public class LoginView extends JPanel{
 		loginButton.setBorder(new EtchedBorder(100));
 		loginButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		loginButton.setForeground(Color.WHITE);
+		loginButton.setFocusable(false);
 		add(loginButton);
 		
 	}
@@ -108,14 +115,15 @@ public class LoginView extends JPanel{
 		this.psswdLabel = psswdLabel;
 	}
 
-	public JTextField getPsswdField() {
+	public JPasswordField getPsswdField() {
 		return psswdField;
 	}
 
+	/*
 	public void setPsswdField(JTextField psswdField) {
 		this.psswdField = psswdField;
 	}
-
+	 */
 	public JButton getBackButton() {
 		return backButton;
 	}

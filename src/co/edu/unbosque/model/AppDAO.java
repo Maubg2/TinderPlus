@@ -5,4 +5,7 @@ public interface AppDAO {
 	User searchUser(String username);
 	void modifyUser();
 	void deleteUser();
+	
+	void displayDB(); //Debug
+	boolean checkUser(String username, String password);
 }

@@ -44,6 +44,7 @@ public class MainPanel extends JPanel{
 		LogInButton.setBorder(new EtchedBorder(100));
 		LogInButton.setForeground(Color.WHITE);
 		LogInButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		LogInButton.setFocusable(false); //Que no aparezca la caja que rodea el texto
 		add(LogInButton);
 		
 		SignInButton = new JButton("Registrarse");
@@ -52,6 +53,7 @@ public class MainPanel extends JPanel{
 		SignInButton.setBorder(new EtchedBorder(100));
 		SignInButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		SignInButton.setForeground(Color.WHITE);
+		SignInButton.setFocusable(false);
 		add(SignInButton);
 		
 		image = new ImageIcon("media/Tinder.png");

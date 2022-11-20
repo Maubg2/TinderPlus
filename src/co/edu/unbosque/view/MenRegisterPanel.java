@@ -2,6 +2,7 @@ package co.edu.unbosque.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -31,6 +32,12 @@ public class MenRegisterPanel extends GeneralRegister{
 		salaryMRPField.setBounds(160, 240, 100, 24);
 		add(salaryMRPField);
 		
+	}
+	
+	public ArrayList<Object> collectMenData(){
+		ArrayList<Object> returnableData = super.collectData();//Traer los datos del super
+		returnableData.add(salaryMRPField.getText()); //Añadir los datos propios de la clase hija
+		return returnableData;
 	}
 
 	public JTextField getSalaryMRPField() {

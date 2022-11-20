@@ -20,6 +20,10 @@ public class MainView extends JFrame{
 	private MenRegisterPanel MRV;
 	private WomenRegisterPanel WRP;
 	
+	//Login
+	private MainUserView MUV;
+	private MainAdminView MAV;
+	
 	//Settings
 	final int xPanel = 90;
 	final int yPanel = 80;
@@ -34,7 +38,11 @@ public class MainView extends JFrame{
 		Image newimg = image.getScaledInstance(850, 800,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 		imageIcon = new ImageIcon(newimg);  // transform it back
 		setContentPane(new JLabel(imageIcon));
+		//setUndecorated(true);
 		
+		//Frame icon
+		ImageIcon frameIcon = new ImageIcon("media/pngegg.png");
+		this.setIconImage(frameIcon.getImage());
 		
 		funcionar();
 		
@@ -70,6 +78,14 @@ public class MainView extends JFrame{
 		WRP = new WomenRegisterPanel();
 		WRP.setBounds(xPanel,yPanel, widthPanel, heightPanel);
 		getContentPane().add(WRP);
+		
+		MUV = new MainUserView();
+		MUV.setBounds(xPanel,yPanel, widthPanel, heightPanel);
+		getContentPane().add(MUV);
+		
+		MAV = new MainAdminView();
+		MAV.setBounds(xPanel,yPanel, widthPanel, heightPanel);
+		getContentPane().add(MAV);
 	}
 
 	public MenRegisterPanel getMRV() {
@@ -110,6 +126,22 @@ public class MainView extends JFrame{
 
 	public void setWRP(WomenRegisterPanel wRP) {
 		WRP = wRP;
+	}
+
+	public MainUserView getMUV() {
+		return MUV;
+	}
+
+	public void setMUV(MainUserView mUV) {
+		MUV = mUV;
+	}
+
+	public MainAdminView getMAV() {
+		return MAV;
+	}
+
+	public void setMAV(MainAdminView mAV) {
+		MAV = mAV;
 	}
 	
 }

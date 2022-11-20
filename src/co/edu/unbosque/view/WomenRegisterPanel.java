@@ -2,6 +2,7 @@ package co.edu.unbosque.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -25,6 +26,9 @@ public class WomenRegisterPanel extends GeneralRegister{
 		divorcedWRPCheck = new JCheckBox();
 		divorcedWRPCheck.setBounds(200, 242, 20, 20);
 		divorcedWRPCheck.setOpaque(false);
+		//divorcedWRPCheck.setText(); Para ponerle texto sin usar un Label
+		//divor....setIcon(); //Para cambiar el icono de desmarcado; divor....setSelectedIcon() //Para cambiar el ícono de marcado
+		divorcedWRPCheck.setFocusable(false);
 		add(divorcedWRPCheck);
 		
 		divorcedWRPLabel = new JLabel("Se ha divorciado:");
@@ -32,6 +36,12 @@ public class WomenRegisterPanel extends GeneralRegister{
 		divorcedWRPLabel.setBounds(44, 240, 150, 24);
 		add(divorcedWRPLabel);
 		
+	}
+	
+	public ArrayList<Object> collectWomenData(){
+		ArrayList<Object> returnableData = super.collectData();
+		returnableData.add(divorcedWRPCheck.isSelected());
+		return returnableData;
 	}
 	
 }
