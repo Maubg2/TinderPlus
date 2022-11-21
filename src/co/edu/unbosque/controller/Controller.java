@@ -98,11 +98,16 @@ public class Controller implements ActionListener{
 			String password = String.valueOf(MV.getLV().getPsswdField().getPassword()); //ValueOf porque getPassword devuelve un array de chars
 			//2. Mandar a buscar el usuario con esos datos
 			boolean validUser = DTO.checkUser(username, password);
+			boolean validAdmin = DTO.checkAdmin(username, password);
 			if(validUser) {
 				//System.out.println("Usuario existe");
 				MV.getLV().setVisible(false);
 				MV.getMUV().setVisible(true);
-			}else {
+			}else if(validAdmin) {
+				MV.getLV().setVisible(false);
+				MV.getMAV().setVisible(true);
+			}
+			else {
 				//System.out.println("Usuario no existe");
 				JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
 			}

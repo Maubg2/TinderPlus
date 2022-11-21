@@ -23,6 +23,22 @@ public class MainUserView extends JPanel{
 	private JLabel lanaPrueba;
 	private ImageIcon lanaImage;
 	
+	//Información para el usuario
+	private JLabel nameUserLabel;
+	private JLabel usernameUserLabel;
+	private JLabel ageUserLabel;
+	private JLabel heightUserLabel;
+	private JLabel salaryUserLabel;
+	private JLabel divorceUserLabel;
+	
+	//Variables para los datos
+	private JLabel nameUserData;
+	private JLabel usernameUserData;
+	private JLabel ageUserData;
+	private JLabel heightUserData;
+	private JLabel salaryUserData;
+	private JLabel divorceUserData;
+	
 	public MainUserView() {
 		
 		setLayout(null);
@@ -69,11 +85,60 @@ public class MainUserView extends JPanel{
 		tinderTitle.setBounds(240, 2, 120, 70);
 		add(tinderTitle);
 		
-		lanaImage = new ImageIcon("media/man.jpg");
+		lanaImage = new ImageIcon("media/RostroMujer10.png");
 		lanaPrueba = new JLabel();
 		lanaPrueba.setIcon(new ImageIcon(lanaImage.getImage().getScaledInstance(150, 130, Image.SCALE_SMOOTH)));
 		lanaPrueba.setBounds(224, 60, 150, 130);
 		add(lanaPrueba);
+		
+		nameUserLabel = new JLabel("Nombre: ");
+		nameUserLabel.setBounds(220, 190, 200, 30);
+		add(nameUserLabel);
+		
+		usernameUserLabel = new JLabel("Usuario: ");
+		usernameUserLabel.setBounds(220, 210, 200, 30);
+		add(usernameUserLabel);
+		
+		ageUserLabel = new JLabel("Edad: ");
+		ageUserLabel.setBounds(220, 230, 200, 30);
+		add(ageUserLabel);
+		
+		heightUserLabel = new JLabel("Altura: ");
+		heightUserLabel.setBounds(220, 250, 200, 30);
+		add(heightUserLabel);
+		
+		salaryUserLabel = new JLabel("Salario: ");
+		salaryUserLabel.setBounds(220, 270, 200, 30);
+		add(salaryUserLabel);
+		
+		divorceUserLabel = new JLabel("Divorcio: ");
+		divorceUserLabel.setBounds(220, 290, 200, 30);
+		add(divorceUserLabel);
+		
+		nameUserData = new JLabel("Pruebaaaaa");
+		nameUserData.setBounds(290, 190, 200, 30);
+		add(nameUserData);
+		
+		usernameUserData = new JLabel("Pruebaaaaa");
+		usernameUserData.setBounds(290, 210, 200, 30);
+		add(usernameUserData);
+		
+		ageUserData = new JLabel("Pruebaaaaa");
+		ageUserData.setBounds(290, 230, 200, 30);
+		add(ageUserData);
+		
+		heightUserData = new JLabel("Pruebaaaaa");
+		heightUserData.setBounds(290, 250, 200, 30);
+		add(heightUserData);
+		
+		salaryUserData = new JLabel("Pruebaaaaa");
+		salaryUserData.setBounds(290, 270, 200, 30);
+		add(salaryUserData);
+		
+		divorceUserData = new JLabel("Pruebaaaaa");
+		divorceUserData.setBounds(290, 290, 200, 30);
+		add(divorceUserData);
+		
 	}
 	
 
