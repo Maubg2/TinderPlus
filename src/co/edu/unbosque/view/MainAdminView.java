@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
@@ -33,7 +33,7 @@ public class MainAdminView extends JPanel{
 	private JButton backButtonAdmin;
 	
 	private JTextArea mainTextAreaAdmin;
-	private JScrollBar mainScrollAdmin;
+	private JScrollPane mainScrollAdmin;
 	
 	public MainAdminView() {
 		
@@ -118,11 +118,102 @@ public class MainAdminView extends JPanel{
 		
 		mainTextAreaAdmin = new JTextArea();
 		mainTextAreaAdmin.setBounds(200, 130, 350, 250);
-		add(mainTextAreaAdmin);
+		mainTextAreaAdmin.setLineWrap(true);
+		//	add(mainTextAreaAdmin);
 		
-		mainScrollAdmin = new JScrollBar();
-		//mainScrollAdmin.setBounds();
+		mainScrollAdmin = new JScrollPane(mainTextAreaAdmin);
+		mainScrollAdmin.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		mainScrollAdmin.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		mainScrollAdmin.setBounds(200, 130, 350, 250);
 		add(mainScrollAdmin);
+	}
+
+	public JButton getAddAdminView() {
+		return addAdminView;
+	}
+
+	public void setAddAdminView(JButton addAdminView) {
+		this.addAdminView = addAdminView;
+	}
+
+	public JButton getModifyAdminView() {
+		return modifyAdminView;
+	}
+
+	public void setModifyAdminView(JButton modifyAdminView) {
+		this.modifyAdminView = modifyAdminView;
+	}
+
+	public JButton getDeleteAdminView() {
+		return deleteAdminView;
+	}
+
+	public void setDeleteAdminView(JButton deleteAdminView) {
+		this.deleteAdminView = deleteAdminView;
+	}
+
+	public JButton getSearchAdminView() {
+		return searchAdminView;
+	}
+
+	public void setSearchAdminView(JButton searchAdminView) {
+		this.searchAdminView = searchAdminView;
+	}
+
+	public JComboBox getKeywordSortAdmin() {
+		return keywordSortAdmin;
+	}
+
+	public void setKeywordSortAdmin(JComboBox keywordSortAdmin) {
+		this.keywordSortAdmin = keywordSortAdmin;
+	}
+
+	public String[] getListKeywordSort() {
+		return listKeywordSort;
+	}
+
+	public void setListKeywordSort(String[] listKeywordSort) {
+		this.listKeywordSort = listKeywordSort;
+	}
+
+	public JComboBox getOrderListAdmin() {
+		return orderListAdmin;
+	}
+
+	public void setOrderListAdmin(JComboBox orderListAdmin) {
+		this.orderListAdmin = orderListAdmin;
+	}
+
+	public String[] getListOrder() {
+		return listOrder;
+	}
+
+	public void setListOrder(String[] listOrder) {
+		this.listOrder = listOrder;
+	}
+
+	public JButton getRefreshListAdmin() {
+		return refreshListAdmin;
+	}
+
+	public void setRefreshListAdmin(JButton refreshListAdmin) {
+		this.refreshListAdmin = refreshListAdmin;
+	}
+
+	public JButton getBackButtonAdmin() {
+		return backButtonAdmin;
+	}
+
+	public void setBackButtonAdmin(JButton backButtonAdmin) {
+		this.backButtonAdmin = backButtonAdmin;
+	}
+
+	public JTextArea getMainTextAreaAdmin() {
+		return mainTextAreaAdmin;
+	}
+
+	public void setMainTextAreaAdmin(JTextArea mainTextAreaAdmin) {
+		this.mainTextAreaAdmin = mainTextAreaAdmin;
 	}
 
 }
