@@ -103,8 +103,8 @@ public class LoginView extends JPanel{
 		return userField;
 	}
 
-	public void setUserField(JTextField userField) {
-		this.userField = userField;
+	public void setUserField(String userField) {
+		this.userField.setText(userField);
 	}
 
 	public JLabel getPsswdLabel() {
@@ -119,11 +119,11 @@ public class LoginView extends JPanel{
 		return psswdField;
 	}
 
-	/*
-	public void setPsswdField(JTextField psswdField) {
-		this.psswdField = psswdField;
+	
+	public void setPsswdField(String psswdField) {
+		this.psswdField.setText(psswdField);
 	}
-	 */
+	 
 	public JButton getBackButton() {
 		return backButton;
 	}

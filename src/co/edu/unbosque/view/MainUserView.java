@@ -17,11 +17,12 @@ public class MainUserView extends JPanel{
 	private JButton dislikeButtonUser;
 	private JButton backButtonUser;
 	
+	
 	private JLabel tinderTitle; 
 	private ImageIcon image;
 	
-	private JLabel lanaPrueba;
-	private ImageIcon lanaImage;
+	private JLabel mainPrueba;
+	private ImageIcon mainImage;
 	
 	//Información para el usuario
 	private JLabel nameUserLabel;
@@ -39,6 +40,11 @@ public class MainUserView extends JPanel{
 	private JLabel salaryUserData;
 	private JLabel divorceUserData;
 	
+	//Cambio de imágenes
+	private String randomImage;
+	
+	
+
 	public MainUserView() {
 		
 		setLayout(null);
@@ -71,7 +77,7 @@ public class MainUserView extends JPanel{
 		dislikeButtonUser.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(dislikeButtonUser);
 		
-		backButtonUser = new JButton("Volver");
+		backButtonUser = new JButton("Salir");
 		backButtonUser.setBounds(260, 350, 80, 30);
 		backButtonUser.setBackground(Color.decode("#EA047E"));
 		backButtonUser.setBorder(new EtchedBorder(100));
@@ -85,11 +91,14 @@ public class MainUserView extends JPanel{
 		tinderTitle.setBounds(240, 2, 120, 70);
 		add(tinderTitle);
 		
-		lanaImage = new ImageIcon("media/RostroMujer10.png");
-		lanaPrueba = new JLabel();
-		lanaPrueba.setIcon(new ImageIcon(lanaImage.getImage().getScaledInstance(150, 130, Image.SCALE_SMOOTH)));
-		lanaPrueba.setBounds(224, 60, 150, 130);
-		add(lanaPrueba);
+		mainPrueba = new JLabel();
+		/*
+		mainImage = new ImageIcon(randomImage);
+		mainPrueba = new JLabel();
+		mainPrueba.setIcon(new ImageIcon(mainImage.getImage().getScaledInstance(150, 130, Image.SCALE_SMOOTH)));
+		mainPrueba.setBounds(224, 60, 150, 130);
+		add(mainPrueba);
+		*/
 		
 		nameUserLabel = new JLabel("Nombre: ");
 		nameUserLabel.setBounds(220, 190, 200, 30);
@@ -141,5 +150,108 @@ public class MainUserView extends JPanel{
 		
 	}
 	
+	public void updateImage() {
+		mainImage = new ImageIcon(randomImage);
+		
+		mainPrueba.setIcon(new ImageIcon(mainImage.getImage().getScaledInstance(150, 130, Image.SCALE_SMOOTH)));
+		mainPrueba.setBounds(224, 60, 150, 130);
+		add(mainPrueba);
+	}
+	
+	public JLabel getTitleUserView() {
+		return titleUserView;
+	}
+
+	public void setTitleUserView(JLabel titleUserView) {
+		this.titleUserView = titleUserView;
+	}
+
+	public JButton getLikeButtonUser() {
+		return likeButtonUser;
+	}
+
+	public void setLikeButtonUser(JButton likeButtonUser) {
+		this.likeButtonUser = likeButtonUser;
+	}
+
+	public JButton getDislikeButtonUser() {
+		return dislikeButtonUser;
+	}
+
+	public void setDislikeButtonUser(JButton dislikeButtonUser) {
+		this.dislikeButtonUser = dislikeButtonUser;
+	}
+
+	public JButton getBackButtonUser() {
+		return backButtonUser;
+	}
+
+	public void setBackButtonUser(JButton backButtonUser) {
+		this.backButtonUser = backButtonUser;
+	}
+
+	public ImageIcon getImage() {
+		return image;
+	}
+
+	public void setImage(ImageIcon image) {
+		this.image = image;
+	}
+
+	public JLabel getNameUserData() {
+		return nameUserData;
+	}
+
+	public void setNameUserData(JLabel nameUserData) {
+		this.nameUserData = nameUserData;
+	}
+
+	public JLabel getUsernameUserData() {
+		return usernameUserData;
+	}
+
+	public void setUsernameUserData(JLabel usernameUserData) {
+		this.usernameUserData = usernameUserData;
+	}
+
+	public JLabel getAgeUserData() {
+		return ageUserData;
+	}
+
+	public void setAgeUserData(JLabel ageUserData) {
+		this.ageUserData = ageUserData;
+	}
+
+	public JLabel getHeightUserData() {
+		return heightUserData;
+	}
+
+	public void setHeightUserData(JLabel heightUserData) {
+		this.heightUserData = heightUserData;
+	}
+
+	public JLabel getSalaryUserData() {
+		return salaryUserData;
+	}
+
+	public void setSalaryUserData(JLabel salaryUserData) {
+		this.salaryUserData = salaryUserData;
+	}
+
+	public JLabel getDivorceUserData() {
+		return divorceUserData;
+	}
+
+	public void setDivorceUserData(JLabel divorceUserData) {
+		this.divorceUserData = divorceUserData;
+	}
+
+	public String getRandomImage() {
+		return randomImage;
+	}
+
+	public void setRandomImage(String randomImage) {
+		this.randomImage = randomImage;
+	}
 
 }

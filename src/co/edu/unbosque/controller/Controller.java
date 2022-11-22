@@ -68,6 +68,13 @@ public class Controller implements ActionListener{
 		MV.getWRP().getExitButton().setActionCommand("exitWRP");
 		MV.getWRP().getNextButton().addActionListener(this);
 		MV.getWRP().getNextButton().setActionCommand("nextWRP");
+		
+		//Main user view Listeners
+		MV.getMUV().getBackButtonUser().addActionListener(this);
+		MV.getMUV().getBackButtonUser().setActionCommand("backMUV");
+		
+		MV.getMUV().getLikeButtonUser().addActionListener(this);
+		MV.getMUV().getLikeButtonUser().setActionCommand("nextMUV");
 	}
 
 	@Override
@@ -88,8 +95,7 @@ public class Controller implements ActionListener{
 			MV.getLV().setVisible(false);
 			MV.getMP().setVisible(true);
 			break;
-		case "loginButtonLoginView":
-			//Pendiente
+		case "loginButtonLoginView": //Boton de inicio de sesión
 			//1. Traer datos de los fields
 			
 			//Para probar: User: juagalindo Password: P,u[2PyrjNM_:_9
@@ -103,12 +109,20 @@ public class Controller implements ActionListener{
 				//System.out.println("Usuario existe");
 				MV.getLV().setVisible(false);
 				MV.getMUV().setVisible(true);
+				MV.getLV().setUserField("");
+				MV.getLV().setPsswdField("");
+				String randomImage = DTO.retrieveImageSrc();
+				MV.getMUV().setRandomImage(randomImage);
+				MV.getMUV().updateImage();
 			}else if(validAdmin) {
 				MV.getLV().setVisible(false);
 				MV.getMAV().setVisible(true);
+				MV.getLV().setUserField("");
+				MV.getLV().setPsswdField("");
 			}
 			else {
 				//System.out.println("Usuario no existe");
+				MV.getLV().setPsswdField("");
 				JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
 			}
 			break;
@@ -186,9 +200,22 @@ public class Controller implements ActionListener{
 			//} else if(name == null || age == null || username == null || email == null || height == null || salary == null) {
 				JOptionPane.showMessageDialog(null, "Error :)", "información", JOptionPane.PLAIN_MESSAGE);
 			}
-													
-			
 			//Eliminar campos de texto
+			break;
+			
+		//MainUserView
+		case "backMUV":
+			MV.getMUV().setVisible(false);
+			MV.getMP().setVisible(true);
+			break;
+			
+		case "nextMUV":
+			//Cambiar foto y datos
+			String randomImage = DTO.retrieveImageSrc();
+			System.out.println(randomImage);
+			MV.getMUV().setRandomImage(randomImage);
+			MV.getMUV().updateImage();
+			
 			break;
 		default:
 			break;

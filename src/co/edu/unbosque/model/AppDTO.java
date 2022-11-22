@@ -19,6 +19,9 @@ public class AppDTO implements AppDAO{
 	BufferedReader reader = null;
 	String line = "";
 	
+	//Images
+	final String srcImage[] = {"media/RostroHombre10.jpg", "media/RostroHombre2.jpg", "media/RostroHombre3.jpg", "media/RostroHombre4.jpg", "media/RostroHombre7.jpg", "media/RostroHombre8.jpg", "media/RostroMujer10.png", "media/RostroMujer2.jpg", "media/RostroMujer3.jpg", "media/RostroMujer4.jpg", "media/RostroMujer5.jpg", "media/RostroMujer8.jpg", "media/RostroMujer9.jpg"};
+	
 	public AppDTO() {
 		
 	}
@@ -127,5 +130,11 @@ public class AppDTO implements AppDAO{
 			return true;
 		}
 		return false;
+	}
+	
+	public String retrieveImageSrc() {
+		int randomIndex = (int)(Math.random()*(srcImage.length));
+		System.out.println(randomIndex);
+		return srcImage[randomIndex];
 	}
 }
