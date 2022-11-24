@@ -28,6 +28,7 @@ public class Controller implements ActionListener{
 	String height;
 	Date bornDate;
 	boolean isAvailable;
+	boolean isDivorced; //Solo mujeres
 	String salary; //Solo hombres
 	
 	//User & Password & Gender
@@ -253,28 +254,60 @@ public class Controller implements ActionListener{
 			//Reiniciar valores
 			MV.getRV().setNameField("");
 			MV.getRV().setPasswordField("");
+			MV.getWRP().resetAllDataWRV();
 			break;
 		case "nextWRP": //Recoger datos de mujer
 			//System.out.println("Next woman");
-			MV.getWRP().setVisible(false);
-			name = MV.getWRP().getUsernameRegField().getText();
-			age = MV.getWRP().getAgeRegField().getText();
-			username = MV.getRV().getNameField().getText();
-			email = MV.getWRP().getMailRegField().getText();
-			height = MV.getWRP().getHeightRegField().getText(); //Opcional
-			boolean isDivorced = MV.getWRP().getCheckBox().isSelected();
-			System.out.println(isDivorced);
-			isNameCorrect = Toolkit.checkData(name);
-			isAgeCorrect = Toolkit.checkNumber(name);
-
-			if(isNameCorrect && isAgeCorrect) {
-													//Username
-				//User newUser = UserFactory.createMan(username, Integer.parseInt(age), email, "hombre", Integer.parseInt(height), Integer.parseInt(salary), name);
-				//DTO.addUser(newUser);
-			//} else if(name == null || age == null || username == null || email == null || height == null || salary == null) {
-				JOptionPane.showMessageDialog(null, "Error :)", "información", JOptionPane.PLAIN_MESSAGE);
+			ArrayList<Object> collectedWomanData = MV.getWRP().collectWomenData();
+			
+			/* collectedWomanData summary: Aquí no se incluye el usuario y la contraseña de RV
+			 * 	for(Object x : collectedWomanData) {
+				System.out.println(x);
 			}
+			 * 0. Username (Full name)
+			 * 1. Age
+			 * 2. Mail
+			 * 3. Height
+			 * 4. Born date
+			 * 5. isAvailable (boolean)
+			 * 6. isDivorced
+			 */
+			name = (String) collectedWomanData.get(0);
+			age = (String) collectedWomanData.get(1);
+			email = (String) collectedWomanData.get(2);
+			if(!MV.getWRP().getHeightRegField().getText().isEmpty()) {
+				height = (String) collectedWomanData.get(3);
+			}
+			bornDate = Toolkit.parseDateAsString((String) collectedWomanData.get(4));
+			isAvailable = (boolean) collectedWomanData.get(5);
+			isDivorced = (boolean) collectedWomanData.get(6);
+			
+			isNameCorrect = Toolkit.checkData(name); 
+			if(!isNameCorrect) {
+				JOptionPane.showMessageDialog(null, "El nombre no debe contener caracteres especiales");
+			}
+			isFullName = Toolkit.isFullName(name); //Debe tener 1 nombre y 2 apellidos
+			if(!isFullName) {
+				JOptionPane.showMessageDialog(null, "Debe ingresar 1 nombre y 2 apellidos");
+			}
+			isAgeCorrect = Toolkit.checkNumber(age);
+			if(!isAgeCorrect) {
+				JOptionPane.showMessageDialog(null, "La edad deberían ser solo números");
+			}
+			
+			if(isNameCorrect && isFullName && isAgeCorrect) {
+				User newUser = UserFactory.createWoman(resUsernameFieldRegister, resPasswordFieldRegister, name, Integer.parseInt(age), email, bornDate, isAvailable, isDivorced, resRegisterComboBoxMV);
+				//System.out.println(newUser.getPassword());
+				DTO.addUser(newUser);
+				MV.getMUV().setVisible(false);
+				MV.getMP().setVisible(true);
+			}
+		
 			//Eliminar campos de texto
+			
+			MV.getRV().setNameField("");
+			MV.getRV().setPasswordField("");
+			MV.getWRP().resetAllDataWRV();
 			break;
 			
 		//MainUserView

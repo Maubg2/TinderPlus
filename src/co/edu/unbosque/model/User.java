@@ -27,7 +27,7 @@ public class User {
 	protected int matchAmount = 0;
 	
 	//Para mujeres
-	public User(String username, int age, String mail, String gender, String name, int height, boolean isAvailable, Date bornDate, String password, boolean isDivorced) {
+	public User(String username, int age, String mail, String gender, String name, boolean isAvailable, Date bornDate, String password, boolean isDivorced) {
 		this.username = username;
 		this.age = age;
 		this.mail = mail;

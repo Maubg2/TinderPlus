@@ -85,6 +85,52 @@ public class AppDTO implements AppDAO{
 			break;
 			
 		case "Woman":
+try {
+				
+				out = new FileWriter(file, true); //El true es para que no borre los datos que habían
+				/*
+				out.write(data);
+				out.write(";");
+				out.write(data2);
+				*/
+	 			out.write(""); //ID
+	 			out.write(";");
+	 			out.write(user.getFirstName());
+	 			out.write(";");
+	 			out.write(user.getFirstSurname());
+	 			out.write(";");
+	 			out.write(user.getLastSurname());
+	 			out.write(";");
+	 			out.write(user.getGender());
+	 			out.write(";");
+	 			out.write(user.getUsername());
+	 			out.write(";");
+	 			out.write(user.getPassword());
+	 			out.write(";");
+	 			out.write(user.getMail());
+	 			out.write(";");
+	 			out.write(user.getSimpleBornDate());
+	 			out.write(";");
+	 			out.write(Integer.toString(user.getAge()));
+	 			out.write(";");
+	 			out.write(""); //Ingresos
+	 			out.write(";");
+	 			out.write(((Woman) user).getIsDivorced());
+	 			out.write(";");
+	 			out.write(Integer.toString(user.getLikesAmount()));
+	 			out.write(";");
+	 			out.write(Integer.toString(user.getSentLikesAmount()));
+	 			out.write(";");
+	 			out.write(Integer.toString(user.getMatchAmount()));
+	 			out.write(";");
+	 			out.write(user.getIsAvailableString());
+				
+				out.close();
+			} catch (IOException e) {
+				//e.printStackTrace();
+				System.out.println("Error al abrir el archivo csv: Cierre el archivo e inténtelo de nuevo");
+			} 
+			
 			break;
 		}
 		

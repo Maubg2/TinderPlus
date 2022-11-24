@@ -43,5 +43,9 @@ public class WomenRegisterPanel extends GeneralRegister{
 		returnableData.add(divorcedWRPCheck.isSelected());
 		return returnableData;
 	}
+	public void resetAllDataWRV() {
+		super.resetAllGeneralFields();
+		divorcedWRPCheck.setSelected(false);
+	}
 	
 }

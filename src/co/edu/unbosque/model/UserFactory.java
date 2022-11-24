@@ -21,8 +21,8 @@ public class UserFactory {
 	
 	}
 	
-	public static User createWoman(String username, int age, String mail, String name) {
-		return new Woman(username, age, mail, name);
+	public static User createWoman(String username, String password, String name, int age, String mail, Date bornDate, boolean isAvailable, boolean isDivorced, String gender) {
+		return new Woman(username, password, name, age, mail, bornDate, isAvailable, isDivorced, gender);
 	}
 	
 	
