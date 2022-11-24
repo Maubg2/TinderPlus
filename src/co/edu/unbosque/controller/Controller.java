@@ -2,6 +2,8 @@ package co.edu.unbosque.controller;
 
 import java.awt.event.ActionEvent;
 import java.lang.Integer;
+import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
@@ -24,10 +26,22 @@ public class Controller implements ActionListener{
 	String username;
 	String email;
 	String height;
+	Date bornDate;
+	boolean isAvailable;
+	String salary; //Solo hombres
+	
+	//User & Password & Gender
+	String resRegisterComboBoxMV; //Gender
+	String resUsernameFieldRegister; //Username(Not full name)
+	String resPasswordFieldRegister; //Password
 	
 	//Checking data
 	boolean isNameCorrect;
+	boolean isFullName;
 	boolean isAgeCorrect;
+	
+	//Random data
+	String randomImage;
 	
 	public Controller() {
 		MV = new MainView();
@@ -75,6 +89,9 @@ public class Controller implements ActionListener{
 		
 		MV.getMUV().getLikeButtonUser().addActionListener(this);
 		MV.getMUV().getLikeButtonUser().setActionCommand("nextMUV");
+		
+		MV.getMUV().getDislikeButtonUser().addActionListener(this);
+		MV.getMUV().getDislikeButtonUser().setActionCommand("dislikeMUV");
 	}
 
 	@Override
@@ -111,7 +128,9 @@ public class Controller implements ActionListener{
 				MV.getMUV().setVisible(true);
 				MV.getLV().setUserField("");
 				MV.getLV().setPsswdField("");
-				String randomImage = DTO.retrieveImageSrc();
+				
+				//Crear imagenes
+				randomImage = DTO.retrieveImageSrc();
 				MV.getMUV().setRandomImage(randomImage);
 				MV.getMUV().updateImage();
 			}else if(validAdmin) {
@@ -131,12 +150,14 @@ public class Controller implements ActionListener{
 			MV.getMP().setVisible(true);
 			//Reiniciar campos
 			MV.getRV().setNameField("");
+			MV.getRV().setPasswordField("");
 			break;
 		case "nextButtonRegisterView":
-			String resRegisterComboBoxMV = MV.getRV().getRegisterGenderBox().getSelectedItem().toString().toLowerCase();
-			String resUsernameFieldRegister = MV.getRV().getNameField().getText();
+			resRegisterComboBoxMV = MV.getRV().getRegisterGenderBox().getSelectedItem().toString().toLowerCase();
+			resUsernameFieldRegister = MV.getRV().getNameField().getText();
+			resPasswordFieldRegister = String.valueOf(MV.getRV().getPasswordField().getPassword());
 			
-			if(resUsernameFieldRegister.isEmpty()) {
+			if(resUsernameFieldRegister.isEmpty() || resPasswordFieldRegister.isEmpty()) {
 				JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Información", JOptionPane.WARNING_MESSAGE); //INFORMATION_MESSAGE, QUESTION_MESSAGE, WARNING_MESSAGE, ERROR_MESSAGE
 			}else {
 				switch(resRegisterComboBoxMV) {
@@ -152,16 +173,19 @@ public class Controller implements ActionListener{
 			}
 			break;
 		
+		//Men register view
 		case "exitMRV":
 			MV.getMRV().setVisible(false);
 			MV.getMP().setVisible(true);
 			//Reiniciar valores
 			MV.getRV().setNameField("");
+			MV.getRV().setPasswordField("");
 			break;
 		case "nextMRV": //Boton siguiente hombre
 			MV.getMRV().setVisible(false);
 			MV.getMP().setVisible(true);
 			//Recolectar datos y crear objeto
+			/*
 			//resRegisterComboBoxMV = MV.getRV().getRegisterGenderBox().getSelectedItem().toString().toLowerCase();
 			name = MV.getMRV().getUsernameRegField().getText();
 			username = 
@@ -169,16 +193,66 @@ public class Controller implements ActionListener{
 			email = MV.getMRV().getMailRegField().getText();
 			height = MV.getMRV().getHeightRegField().getText();
 			String salary = MV.getMRV().getSalaryMRPField().getText();
+			*/
+			ArrayList<Object> collectedMenData = MV.getMRV().collectMenData(); //Arraylist con todos los campos de texto
 			
-			isNameCorrect = Toolkit.checkData(name);
+			/* collectedMenData summary: Aquí no se incluye el usuario y la contraseña de RV
+			 * for(Object x : collectedMenData) {
+				System.out.println(x);
+			   }	
+			 * 0. Username
+			 * 1. Age
+			 * 2. Mail
+			 * 3. Height
+			 * 4. Born date
+			 * 5. isAvailable (boolean)
+			 * 6. Salary (Caso de hombre)
+			 */
+			name = (String) collectedMenData.get(0);
+			age = (String) collectedMenData.get(1);
+			email = (String) collectedMenData.get(2);
+			height = (String) collectedMenData.get(3);
+			bornDate = Toolkit.parseDateAsString((String)collectedMenData.get(4));
+			isAvailable = (boolean) collectedMenData.get(5);
+			salary = (String) collectedMenData.get(6);
+			
+			//Debug
+			System.out.println("Nombre: " + name + "\n" + "Edad: " + age + "\n" + "Email: " + email + "\n" + "Altura: " + height + "\nFecha: " + bornDate + "\nDisponible: " + isAvailable + "\nSalario: " + salary);
+			
+			isNameCorrect = Toolkit.checkData(name); 
+			if(!isNameCorrect) {
+				JOptionPane.showMessageDialog(null, "El nombre no debe contener caracteres especiales");
+			}
+			isFullName = Toolkit.isFullName(name); //Debe tener 1 nombre y 2 apellidos
+			if(!isFullName) {
+				JOptionPane.showMessageDialog(null, "Debe ingresar 1 nombre y 2 apellidos");
+			}
 			isAgeCorrect = Toolkit.checkNumber(age);
-			//Eliminar campos de texto
+			if(!isAgeCorrect) {
+				JOptionPane.showMessageDialog(null, "La edad deberían ser solo números");
+			}
+			
+			if(isNameCorrect && isFullName && isAgeCorrect) {
+				//Crear objeto y agregarlo a la base de datos
+				User newUser = UserFactory.createMan(resUsernameFieldRegister, Integer.parseInt(age), email, resRegisterComboBoxMV, Integer.parseInt(height), Double.parseDouble(salary), name, isAvailable, bornDate, resPasswordFieldRegister);
+				//System.out.println(newUser.getClass().getSimpleName());
+				DTO.addUser(newUser);
+				//Eliminar campos de texto
+				
+				MV.getMRV().resetAllFieldsMRV();
+				MV.getRV().setNameField("");
+				MV.getRV().setPasswordField("");
+			}
+			
 			break;
+			
+		//Woman register view
 		case "exitWRP":
 			MV.getWRP().setVisible(false);
 			MV.getMP().setVisible(true);
 			//Reiniciar valores
 			MV.getRV().setNameField("");
+			MV.getRV().setPasswordField("");
 			break;
 		case "nextWRP": //Recoger datos de mujer
 			//System.out.println("Next woman");
@@ -211,11 +285,18 @@ public class Controller implements ActionListener{
 			
 		case "nextMUV":
 			//Cambiar foto y datos
-			String randomImage = DTO.retrieveImageSrc();
+			randomImage = DTO.retrieveImageSrc();
 			System.out.println(randomImage);
 			MV.getMUV().setRandomImage(randomImage);
 			MV.getMUV().updateImage();
 			
+			break;
+			
+		case "dislikeMUV":
+			//Cambiar foto y datos
+			randomImage = DTO.retrieveImageSrc();
+			MV.getMUV().setRandomImage(randomImage);
+			MV.getMUV().updateImage();
 			break;
 		default:
 			break;

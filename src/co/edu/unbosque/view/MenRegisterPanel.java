@@ -24,12 +24,12 @@ public class MenRegisterPanel extends GeneralRegister{
 		setBackground(Color.decode("#FFA1CF"));
 		
 		salaryMRPLabel = new JLabel("Salario: ");
-		salaryMRPLabel.setBounds(108, 210, 100, 80);
+		salaryMRPLabel.setBounds(308, 246, 100, 80);
 		salaryMRPLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(salaryMRPLabel);
 		
 		salaryMRPField = new JTextField();
-		salaryMRPField.setBounds(160, 240, 100, 24);
+		salaryMRPField.setBounds(360, 276, 100, 24);
 		add(salaryMRPField);
 		
 	}
@@ -38,6 +38,11 @@ public class MenRegisterPanel extends GeneralRegister{
 		ArrayList<Object> returnableData = super.collectData();//Traer los datos del super
 		returnableData.add(salaryMRPField.getText()); //Añadir los datos propios de la clase hija
 		return returnableData;
+	}
+	
+	public void resetAllFieldsMRV() {
+		super.resetAllGeneralFields();
+		salaryMRPField.setText("");
 	}
 
 	public JTextField getSalaryMRPField() {

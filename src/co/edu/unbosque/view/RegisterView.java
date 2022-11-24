@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
@@ -15,12 +16,17 @@ public class RegisterView extends JPanel{
 	
 	private JButton leaveButton;
 	private JButton nextButton;
+	
 	private JLabel title;
 	private JLabel questionBox;
 	private JLabel userName;
+	private JLabel passwordLabel;
+	
 	private JComboBox registerGenderBox;
 	private String listBox[] = {"Hombre", "Mujer"};
+	
 	private JTextField nameField;
+	private JPasswordField passwordField;
 	
 	public RegisterView() {
 		setLayout(null);
@@ -54,12 +60,12 @@ public class RegisterView extends JPanel{
 		add(leaveButton);
 		
 		registerGenderBox = new JComboBox(listBox);
-		registerGenderBox.setBounds(300, 200, 100, 30);
+		registerGenderBox.setBounds(300, 240, 100, 30);
 		add(registerGenderBox);
 		
 		questionBox = new JLabel("Ponga su género:");
 		questionBox.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		questionBox.setBounds(184, 200, 150, 25);
+		questionBox.setBounds(184, 240, 150, 25);
 		add(questionBox);
 		
 		userName = new JLabel("Nombre de usuario:");
@@ -70,6 +76,15 @@ public class RegisterView extends JPanel{
 		nameField = new JTextField();
 		nameField.setBounds(300, 150, 160, 30);
 		add(nameField);
+		
+		passwordLabel = new JLabel("Contraseña: ");
+		passwordLabel.setBounds(216, 190, 160, 30);
+		passwordLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		add(passwordLabel);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(300, 190, 160, 30);
+		add(passwordField);
 		
 	}
 
@@ -105,4 +120,12 @@ public class RegisterView extends JPanel{
 		this.nameField.setText(nameField);
 	}
 
+	public JPasswordField getPasswordField() {
+		return passwordField;
+	}
+
+	public void setPasswordField(String passwordField) {
+		this.passwordField.setText(passwordField);
+	}
+	
 }

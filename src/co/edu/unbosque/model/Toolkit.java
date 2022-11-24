@@ -1,5 +1,9 @@
 package co.edu.unbosque.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Clase que contiene funcionalidades varias
  * @author J&M Sistemas
@@ -28,7 +32,18 @@ public class Toolkit {
 		}
 		return true;
 	}
+	
+	public static boolean isFullName(String name) {
+		int spacesInName = 0;
+		for(char x : name.toCharArray()) {
+			if(x == ' ') { //si encuentra un espacio (Deben haber 2)
+				spacesInName++;
+			}
+		}
 		
+		return spacesInName == 2 ? true: false;
+	}
+	
 	public static boolean checkNumber(String data) {
 		for(String x : charactersArray) {
 			if(data.contains(x)) {
@@ -36,5 +51,17 @@ public class Toolkit {
 			}
 		}
 		return true;
+	}
+	
+	public static Date parseDateAsString(String date) {
+		SimpleDateFormat ft = new SimpleDateFormat("MM/dd/yyyy");
+		Date parsedDate = null;
+		
+		try {
+			parsedDate = ft.parse(date);
+		}catch(ParseException e) {
+			System.out.println("Error convirtiendo la fecha a formato Date (Toolkit: 52)");
+		}
+		return parsedDate;
 	}
 }

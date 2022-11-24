@@ -1,15 +1,21 @@
 package co.edu.unbosque.view;
 
 import java.awt.Color;
+
 import java.awt.Font;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
+import javax.swing.text.DateFormatter;
 
 public class GeneralRegister extends JPanel{
 	
@@ -24,6 +30,13 @@ public class GeneralRegister extends JPanel{
 	protected JTextField heightRegField;
 	protected JLabel optionalHeight;
 	protected JCheckBox checkBox;
+	protected JLabel bornDateLabel;
+	protected DateFormat dateFormat;
+	protected DateFormatter dateFormatter;
+	protected JFormattedTextField dateField;
+	protected JLabel availableLabel;
+	protected JCheckBox availableBox;
+	//Falta disponible
 	
 	protected JButton exitButton;
 	protected JButton nextButton;
@@ -75,6 +88,34 @@ public class GeneralRegister extends JPanel{
 		heightRegField.setBounds(160, 210, 100, 24);
 		add(heightRegField);
 		
+		//Born date section
+		bornDateLabel = new JLabel("Fecha de nacimiento: ");
+		bornDateLabel.setBounds(22, 240, 160, 30);
+		bornDateLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		add(bornDateLabel);
+		
+		dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		dateFormatter = new DateFormatter(dateFormat);
+		
+		dateField = new JFormattedTextField(dateFormatter);
+		dateField.setBounds(160, 240, 90, 30);
+		dateField.setValue(new Date());
+		add(dateField);
+		
+		//Available section
+		availableLabel = new JLabel("Busco pareja: ");
+		availableLabel.setBounds(70, 270, 100, 30);
+		availableLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		add(availableLabel);
+		
+		availableBox = new JCheckBox();
+		//availableBox.setText("Busco pareja: ");
+		availableBox.setBounds(190, 278, 20, 20);
+		availableBox.setOpaque(false);
+		availableBox.setFocusable(false);
+		add(availableBox);
+		
+		
 		//Button section
 		exitButton = new JButton("Salir");
 		exitButton.setBounds(40, 330, 80, 30);
@@ -103,48 +144,58 @@ public class GeneralRegister extends JPanel{
 		returnableData.add(ageRegField.getText());
 		returnableData.add(mailRegField.getText());
 		returnableData.add(heightRegField.getText());
+		returnableData.add(dateField.getText());
+		returnableData.add(availableBox.isSelected());
 		return returnableData;
 		
+	}
+	public void resetAllGeneralFields() {
+		setUsernameRegField("");
+		setAgeRegField("");
+		setMailRegField("");
+		setHeightRegField("");
+		dateField.setValue(new Date());
+		availableBox.setSelected(false);
 	}
 
 	public JTextField getUsernameRegField() { //Nombre completo
 		return usernameRegField;
 	}
 
-	public void setUsernameRegField(JTextField usernameRegField) {
-		this.usernameRegField = usernameRegField;
+	public void setUsernameRegField(String usernameRegField) {
+		this.usernameRegField.setText(usernameRegField);
 	}
 
 	public JTextField getAgeRegField() {
 		return ageRegField;
 	}
 
-	public void setAgeRegField(JTextField ageRegField) {
-		this.ageRegField = ageRegField;
+	public void setAgeRegField(String ageRegField) {
+		this.ageRegField.setText(ageRegField);
 	}
 
 	public JTextField getMailRegField() {
 		return mailRegField;
 	}
 
-	public void setMailRegField(JTextField mailRegField) {
-		this.mailRegField = mailRegField;
+	public void setMailRegField(String mailRegField) {
+		this.mailRegField.setText(mailRegField);
 	}
 
 	public JTextField getHeightRegField() {
 		return heightRegField;
 	}
 
-	public void setHeightRegField(JTextField heightRegField) {
-		this.heightRegField = heightRegField;
+	public void setHeightRegField(String heightRegField) {
+		this.heightRegField.setText(heightRegField);
 	}
 
 	public JLabel getOptionalHeight() {
 		return optionalHeight;
 	}
 
-	public void setOptionalHeight(JLabel optionalHeight) {
-		this.optionalHeight = optionalHeight;
+	public void setOptionalHeight(String optionalHeight) {
+		this.optionalHeight.setText(optionalHeight);
 	}
 
 	public JCheckBox getCheckBox() {
@@ -170,5 +221,22 @@ public class GeneralRegister extends JPanel{
 	public void setNextButton(JButton nextButton) {
 		this.nextButton = nextButton;
 	}
+
+	public JFormattedTextField getDateField() {
+		return dateField;
+	}
+
+	public void setDateField(String dateField) {
+		this.dateField.setText(dateField);
+	}
+
+	public JCheckBox getAvailableBox() {
+		return availableBox;
+	}
+
+	public void setAvailableBox(JCheckBox availableBox) {
+		this.availableBox = availableBox;
+	}
+	
 	
 }
