@@ -54,7 +54,7 @@ public class Toolkit {
 	}
 	
 	public static Date parseDateAsString(String date) {
-		SimpleDateFormat ft = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat ft = new SimpleDateFormat("dd/MM/yyyy");
 		Date parsedDate = null;
 		
 		try {

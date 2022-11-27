@@ -34,11 +34,17 @@ public class MainUserView extends JPanel{
 	
 	//Variables para los datos
 	private JLabel nameUserData;
+	private String nameValue;
 	private JLabel usernameUserData;
+	private String usernameValue;
 	private JLabel ageUserData;
+	private String ageValue;
 	private JLabel heightUserData;
+	private String heightValue;
 	private JLabel salaryUserData;
+	private String salaryValue;
 	private JLabel divorceUserData;
+	private String divorceValue;
 	
 	//Cambio de imágenes
 	private String randomImage;
@@ -124,27 +130,27 @@ public class MainUserView extends JPanel{
 		divorceUserLabel.setBounds(220, 290, 200, 30);
 		add(divorceUserLabel);
 		
-		nameUserData = new JLabel("Pruebaaaaa");
-		nameUserData.setBounds(290, 190, 200, 30);
+		nameUserData = new JLabel(nameValue);
+		nameUserData.setBounds(290, 190, 220, 30);
 		add(nameUserData);
 		
-		usernameUserData = new JLabel("Pruebaaaaa");
+		usernameUserData = new JLabel(usernameValue);
 		usernameUserData.setBounds(290, 210, 200, 30);
 		add(usernameUserData);
 		
-		ageUserData = new JLabel("Pruebaaaaa");
+		ageUserData = new JLabel(ageValue);
 		ageUserData.setBounds(290, 230, 200, 30);
 		add(ageUserData);
 		
-		heightUserData = new JLabel("Pruebaaaaa");
+		heightUserData = new JLabel(heightValue);
 		heightUserData.setBounds(290, 250, 200, 30);
 		add(heightUserData);
 		
-		salaryUserData = new JLabel("Pruebaaaaa");
+		salaryUserData = new JLabel(salaryValue);
 		salaryUserData.setBounds(290, 270, 200, 30);
 		add(salaryUserData);
 		
-		divorceUserData = new JLabel("Pruebaaaaa");
+		divorceUserData = new JLabel(divorceValue);
 		divorceUserData.setBounds(290, 290, 200, 30);
 		add(divorceUserData);
 		
@@ -156,6 +162,15 @@ public class MainUserView extends JPanel{
 		mainPrueba.setIcon(new ImageIcon(mainImage.getImage().getScaledInstance(150, 130, Image.SCALE_SMOOTH)));
 		mainPrueba.setBounds(224, 60, 150, 130);
 		add(mainPrueba);
+	}
+	
+	public void updateUserData() {
+		nameUserData.setText(nameValue);
+		usernameUserData.setText(usernameValue);
+		ageUserData.setText(ageValue);
+		heightUserData.setText(heightValue);
+		salaryUserData.setText(salaryValue);
+		divorceUserData.setText(divorceValue);
 	}
 	
 	public JLabel getTitleUserView() {
@@ -253,5 +268,59 @@ public class MainUserView extends JPanel{
 	public void setRandomImage(String randomImage) {
 		this.randomImage = randomImage;
 	}
+
+	//Data section
+	
+	public String getNameValue() {
+		return nameValue;
+	}
+
+	public void setNameValue(String nameValue) {
+		this.nameValue = nameValue;
+	}
+
+	public String getUsernameValue() {
+		return usernameValue;
+	}
+
+	public void setUsernameValue(String usernameValue) {
+		this.usernameValue = usernameValue;
+	}
+
+	public String getAgeValue() {
+		return ageValue;
+	}
+
+	public void setAgeValue(String ageValue) {
+		this.ageValue = ageValue;
+	}
+
+	public String getHeightValue() {
+		return heightValue;
+	}
+
+	public void setHeightValue(String heightValue) {
+		this.heightValue = heightValue;
+	}
+
+	public String getSalaryValue() {
+		return salaryValue;
+	}
+
+	public void setSalaryValue(String salaryValue) {
+		this.salaryValue = salaryValue;
+	}
+
+	public String getDivorceValue() {
+		return divorceValue;
+	}
+
+	public void setDivorceValue(String divorceValue) {
+		this.divorceValue = divorceValue;
+	}
+	
+	
+	
+	
 
 }

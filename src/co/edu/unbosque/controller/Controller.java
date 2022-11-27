@@ -10,9 +10,11 @@ import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
 
 import co.edu.unbosque.model.AppDTO;
+import co.edu.unbosque.model.Man;
 import co.edu.unbosque.model.Toolkit;
 import co.edu.unbosque.model.User;
 import co.edu.unbosque.model.UserFactory;
+import co.edu.unbosque.model.Woman;
 import co.edu.unbosque.view.MainView;
 
 public class Controller implements ActionListener{
@@ -43,6 +45,7 @@ public class Controller implements ActionListener{
 	
 	//Random data
 	String randomImage;
+	User randomUser;
 	
 	public Controller() {
 		MV = new MainView();
@@ -89,7 +92,7 @@ public class Controller implements ActionListener{
 		MV.getMUV().getBackButtonUser().setActionCommand("backMUV");
 		
 		MV.getMUV().getLikeButtonUser().addActionListener(this);
-		MV.getMUV().getLikeButtonUser().setActionCommand("nextMUV");
+		MV.getMUV().getLikeButtonUser().setActionCommand("likeMUV");
 		
 		MV.getMUV().getDislikeButtonUser().addActionListener(this);
 		MV.getMUV().getDislikeButtonUser().setActionCommand("dislikeMUV");
@@ -101,7 +104,7 @@ public class Controller implements ActionListener{
 		switch(e.getActionCommand()) {
 		
 		case "iniciarSesion":
-			System.out.println("Debug");
+			//System.out.println("Debug");
 			MV.getMP().setVisible(false);
 			MV.getLV().setVisible(true);
 			break;
@@ -316,20 +319,51 @@ public class Controller implements ActionListener{
 			MV.getMP().setVisible(true);
 			break;
 			
-		case "nextMUV":
+		case "likeMUV":
 			//Cambiar foto y datos
 			randomImage = DTO.retrieveImageSrc();
-			System.out.println(randomImage);
+			//System.out.println(randomImage); //Debug
 			MV.getMUV().setRandomImage(randomImage);
 			MV.getMUV().updateImage();
 			
+			//Actualizar datos
+			randomUser = DTO.retrieveRandomUser();
+			MV.getMUV().setNameValue(randomUser.getName());
+			MV.getMUV().setUsernameValue(randomUser.getUsername());
+			MV.getMUV().setAgeValue(Integer.toString(randomUser.getAge()));
+			MV.getMUV().setHeightValue(Integer.toString(randomUser.getHeight()));
+			if(randomUser.getClass().getSimpleName().toLowerCase().equals("man")) {
+				MV.getMUV().setSalaryValue(Double.toString(((Man)randomUser).getSalary()));
+				MV.getMUV().setDivorceValue("No aplica");
+			}
+			else if(randomUser.getClass().getSimpleName().toLowerCase().equals("woman")) {
+				MV.getMUV().setDivorceValue(((Woman) randomUser).getIsDivorced());
+				MV.getMUV().setSalaryValue("No aplica");
+			}
+			MV.getMUV().updateUserData();
 			break;
 			
 		case "dislikeMUV":
-			//Cambiar foto y datos
+			//Cambiar foto
 			randomImage = DTO.retrieveImageSrc();
 			MV.getMUV().setRandomImage(randomImage);
 			MV.getMUV().updateImage();
+			
+			//Actualizar datos
+			randomUser = DTO.retrieveRandomUser();
+			MV.getMUV().setNameValue(randomUser.getName());
+			MV.getMUV().setUsernameValue(randomUser.getUsername());
+			MV.getMUV().setAgeValue(Integer.toString(randomUser.getAge()));
+			MV.getMUV().setHeightValue(Integer.toString(randomUser.getHeight()));
+			if(randomUser.getClass().getSimpleName().toLowerCase().equals("man")) {
+				MV.getMUV().setSalaryValue(Double.toString(((Man)randomUser).getSalary()));
+				MV.getMUV().setDivorceValue("No aplica");
+			}
+			else if(randomUser.getClass().getSimpleName().toLowerCase().equals("woman")) {
+				MV.getMUV().setDivorceValue(((Woman) randomUser).getIsDivorced());
+				MV.getMUV().setSalaryValue("No aplica");
+			}
+			MV.getMUV().updateUserData();
 			break;
 		default:
 			break;

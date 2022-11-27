@@ -93,7 +93,7 @@ try {
 				out.write(";");
 				out.write(data2);
 				*/
-	 			out.write(""); //ID
+	 			out.write(howManyInDataBase() + 1); //ID
 	 			out.write(";");
 	 			out.write(user.getFirstName());
 	 			out.write(";");
@@ -182,11 +182,11 @@ try {
 				 * row[13] = No.LikesEnviados
 				 * row[14] = No.Matches
 				 * row[15] = Estado
-				 * 
+				 * row[16] = Altura
 				 */
 				
 				for(String x : row) {
-					System.out.printf("%-30s", x);
+					System.out.printf("%-50s", x);
 				}
 				System.out.println();
 			}
@@ -244,5 +244,91 @@ try {
 		int randomIndex = (int)(Math.random()*(srcImage.length));
 		System.out.println(randomIndex);
 		return srcImage[randomIndex];
+	}
+	
+	public User retrieveRandomUser() {
+		int randomIndex = (int)(Math.random()*(howManyInDataBase()));
+		User randomUser = null;
+		
+		
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			
+			while((line = reader.readLine()) != null) {
+				
+				String[] row = line.split(";");
+				
+				if(row[0].equals(Integer.toString(randomIndex))) {
+					if(row[4].equals("H")) {
+						randomUser = UserFactory.createMan(row[5], Integer.parseInt(row[9]), row[7], row[4], Integer.parseInt(row[16]), Float.parseFloat(row[10].replace(",", ".")), row[1] + " " + row[2] + " " + row[3], Boolean.parseBoolean(row[15]), Toolkit.parseDateAsString(row[8]), row[6]);
+						break;
+					}
+					else if(row[4].equals("M")) {
+						boolean isDivorced = false;
+						if(row[11].equals("SI")) {
+							isDivorced = true;
+						}
+						if(!row[16].equals("0") || !row[16].isEmpty()) {
+							randomUser = UserFactory.createWoman(row[5], row[6], row[1] + " " + row[2] + " " + row[3], Integer.parseInt(row[9]), row[7], Toolkit.parseDateAsString(row[8]), Boolean.parseBoolean(row[15]), isDivorced, row[4], Integer.parseInt(row[16]));
+						}else {
+							randomUser = UserFactory.createWoman(row[5], row[6], row[1] + " " + row[2] + " " + row[3], Integer.parseInt(row[9]), row[7], Toolkit.parseDateAsString(row[8]), Boolean.parseBoolean(row[15]), isDivorced, row[4]);
+						}
+						break;
+					}
+				}
+				/*
+				 * row[0] = ID
+				 * row[1] = Nombre
+				 * row[2] = Apellido1
+				 * row[3] = Apellido2
+				 * row[4] = Sexo
+				 * 
+				 * row[5] = Usuario
+				 * row[6] = Contraseña
+				 * 
+				 * row[7] = Correo
+				 * row[8] = Fecha Nacimiento
+				 * row[9] = Edad
+				 * row[10] = Ingresos
+				 * row[11] = Divorcio
+				 * row[12] = No.LikesRecibidos
+				 * row[13] = No.LikesEnviados
+				 * row[14] = No.Matches
+				 * row[15] = Estado
+				 * row[16] = altura
+				 */
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}	
+		}
+		System.out.println("ID del usuario random:" + randomIndex++);
+		return randomUser;
+	}
+	
+	public int howManyInDataBase() {
+		int contador = 0;
+		
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			
+			while((line = reader.readLine()) != null) {
+				contador++;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}	
+		}
+		return contador;
 	}
 }

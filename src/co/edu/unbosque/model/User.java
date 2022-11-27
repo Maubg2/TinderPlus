@@ -26,7 +26,7 @@ public class User {
 	protected int sentLikesAmount = 0;
 	protected int matchAmount = 0;
 	
-	//Para mujeres
+	//Para mujeres (Sin altura)
 	public User(String username, int age, String mail, String gender, String name, boolean isAvailable, Date bornDate, String password, boolean isDivorced) {
 		this.username = username;
 		this.age = age;
@@ -35,6 +35,19 @@ public class User {
 		this.name = name;
 		this.isAvailable = isAvailable;
 		this.simpleBornDate = dateFormat.format(bornDate);
+		divideName();
+		setupData();
+	}
+	//Para mujeres (Con altura)
+	public User(String username, int age, String mail, String gender, String name, boolean isAvailable, Date bornDate, String password, boolean isDivorced, int height) {
+		this.username = username;
+		this.age = age;
+		this.mail = mail;
+		this.gender = gender;
+		this.name = name;
+		this.isAvailable = isAvailable;
+		this.simpleBornDate = dateFormat.format(bornDate);
+		this.height = height;
 		divideName();
 		setupData();
 	}
@@ -64,14 +77,14 @@ public class User {
 	public void setupData() {
 		gender = gender.toLowerCase();
 		switch(gender){
-		case "hombre":
+		case "hombre", "h":
 			gender = "H";
 			break;
-		case "mujer":
+		case "mujer", "m":
 			gender = "M";
 			break;
 		default:
-			System.out.println("El género no se reconoció (User: 61)");
+			System.out.println("El género no se reconoció (User: 87)");
 			break;
 		}
 		
