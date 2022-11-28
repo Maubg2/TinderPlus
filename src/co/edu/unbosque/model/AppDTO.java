@@ -44,7 +44,7 @@ public class AppDTO implements AppDAO{
 				out.write(";");
 				out.write(data2);
 				*/
-	 			out.write(""); //ID
+	 			out.write(Integer.toString(howManyInDataBase())); //ID
 	 			out.write(";");
 	 			out.write(user.getFirstName());
 	 			out.write(";");
@@ -93,7 +93,7 @@ try {
 				out.write(";");
 				out.write(data2);
 				*/
-	 			out.write(howManyInDataBase() + 1); //ID
+	 			out.write(Integer.toString(howManyInDataBase())); //ID
 	 			out.write(";");
 	 			out.write(user.getFirstName());
 	 			out.write(";");
