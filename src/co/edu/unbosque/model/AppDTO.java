@@ -140,12 +140,55 @@ try {
 
 	@Override
 	public User searchUser(String username) {
-		return null;
+		
+		User searchedUser = null;
+
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			
+			while((line = reader.readLine()) != null) {
+				
+				String[] row = line.split(";");
+				
+				if(row[5].equals(username)) {
+					if(row[4].equals("H")) {
+						searchedUser = UserFactory.createMan(row[5], Integer.parseInt(row[9]), row[7], row[4], Integer.parseInt(row[16]), Float.parseFloat(row[10].replace(",", ".")), row[1] + " " + row[2] + " " + row[3], Boolean.parseBoolean(row[15]), Toolkit.parseDateAsString(row[8]), row[6], Integer.parseInt(row[12]), Integer.parseInt(row[13]));
+					}else {
+						boolean isDivorced = false;
+						if(row[11].equals("SI")) {
+							isDivorced = true;
+						}
+						if(!row[16].equals("0") || !row[16].isEmpty()) {
+							searchedUser = UserFactory.createWoman(row[5], row[6], row[1] + " " + row[2] + " " + row[3], Integer.parseInt(row[9]), row[7], Toolkit.parseDateAsString(row[8]), Boolean.parseBoolean(row[15]), isDivorced, row[4], Integer.parseInt(row[16]), Integer.parseInt(row[12]), Integer.parseInt(row[13]));
+						}else {
+							searchedUser = UserFactory.createWoman(row[5], row[6], row[1] + " " + row[2] + " " + row[3], Integer.parseInt(row[9]), row[7], Toolkit.parseDateAsString(row[8]), Boolean.parseBoolean(row[15]), isDivorced, row[4], Integer.parseInt(row[12]), Integer.parseInt(row[13]));
+						}
+					}
+				}
+				
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}	
+		}
+		return searchedUser;
+
 	}
 
+	//Para agregar o quitar likes
+	//Como modificar una celda?
 	@Override
-	public void modifyUser() {
-		
+	public void modifyUser(String parameter) {
+		parameter = parameter.toLowerCase();
+		switch(parameter) {
+		case "":
+			break;
+		}
 	}
 
 	@Override
@@ -260,7 +303,7 @@ try {
 				
 				if(row[0].equals(Integer.toString(randomIndex))) {
 					if(row[4].equals("H")) {
-						randomUser = UserFactory.createMan(row[5], Integer.parseInt(row[9]), row[7], row[4], Integer.parseInt(row[16]), Float.parseFloat(row[10].replace(",", ".")), row[1] + " " + row[2] + " " + row[3], Boolean.parseBoolean(row[15]), Toolkit.parseDateAsString(row[8]), row[6]);
+						randomUser = UserFactory.createMan(row[5], Integer.parseInt(row[9]), row[7], row[4], Integer.parseInt(row[16]), Float.parseFloat(row[10].replace(",", ".")), row[1] + " " + row[2] + " " + row[3], Boolean.parseBoolean(row[15]), Toolkit.parseDateAsString(row[8]), row[6], Integer.parseInt(row[12]), Integer.parseInt(row[13]));
 						break;
 					}
 					else if(row[4].equals("M")) {
@@ -269,9 +312,9 @@ try {
 							isDivorced = true;
 						}
 						if(!row[16].equals("0") || !row[16].isEmpty()) {
-							randomUser = UserFactory.createWoman(row[5], row[6], row[1] + " " + row[2] + " " + row[3], Integer.parseInt(row[9]), row[7], Toolkit.parseDateAsString(row[8]), Boolean.parseBoolean(row[15]), isDivorced, row[4], Integer.parseInt(row[16]));
+							randomUser = UserFactory.createWoman(row[5], row[6], row[1] + " " + row[2] + " " + row[3], Integer.parseInt(row[9]), row[7], Toolkit.parseDateAsString(row[8]), Boolean.parseBoolean(row[15]), isDivorced, row[4], Integer.parseInt(row[16]), Integer.parseInt(row[12]), Integer.parseInt(row[13]));
 						}else {
-							randomUser = UserFactory.createWoman(row[5], row[6], row[1] + " " + row[2] + " " + row[3], Integer.parseInt(row[9]), row[7], Toolkit.parseDateAsString(row[8]), Boolean.parseBoolean(row[15]), isDivorced, row[4]);
+							randomUser = UserFactory.createWoman(row[5], row[6], row[1] + " " + row[2] + " " + row[3], Integer.parseInt(row[9]), row[7], Toolkit.parseDateAsString(row[8]), Boolean.parseBoolean(row[15]), isDivorced, row[4], Integer.parseInt(row[12]), Integer.parseInt(row[13]));
 						}
 						break;
 					}

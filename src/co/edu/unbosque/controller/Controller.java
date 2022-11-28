@@ -42,10 +42,15 @@ public class Controller implements ActionListener{
 	boolean isNameCorrect;
 	boolean isFullName;
 	boolean isAgeCorrect;
+	boolean isHeightCorrect;
+	boolean isSalaryCorrect;
 	
 	//Random data
 	String randomImage;
 	User randomUser;
+	
+	//Logged user
+	User actualUser;
 	
 	public Controller() {
 		MV = new MainView();
@@ -137,6 +142,27 @@ public class Controller implements ActionListener{
 				randomImage = DTO.retrieveImageSrc();
 				MV.getMUV().setRandomImage(randomImage);
 				MV.getMUV().updateImage();
+				
+				//Cargar usuario actual
+				actualUser = DTO.searchUser(username);
+				//System.out.println(actualUser.toString()); //Debug
+				
+				//Cargar datos
+				randomUser = DTO.retrieveRandomUser();
+				MV.getMUV().setNameValue(randomUser.getName());
+				MV.getMUV().setUsernameValue(randomUser.getUsername());
+				MV.getMUV().setAgeValue(Integer.toString(randomUser.getAge()));
+				MV.getMUV().setHeightValue(Integer.toString(randomUser.getHeight()));
+				if(randomUser.getClass().getSimpleName().toLowerCase().equals("man")) {
+					MV.getMUV().setSalaryValue(Double.toString(((Man)randomUser).getSalary()));
+					MV.getMUV().setDivorceValue("No aplica");
+				}
+				else if(randomUser.getClass().getSimpleName().toLowerCase().equals("woman")) {
+					MV.getMUV().setDivorceValue(((Woman) randomUser).getIsDivorced());
+					MV.getMUV().setSalaryValue("No aplica");
+				}
+				MV.getMUV().updateUserData();
+				
 			}else if(validAdmin) {
 				MV.getLV().setVisible(false);
 				MV.getMAV().setVisible(true);
@@ -225,27 +251,39 @@ public class Controller implements ActionListener{
 			
 			isNameCorrect = Toolkit.checkData(name); 
 			if(!isNameCorrect) {
-				JOptionPane.showMessageDialog(null, "El nombre no debe contener caracteres especiales");
+				JOptionPane.showMessageDialog(null, "El nombre no debe contener caracteres especiales", "Alerta", JOptionPane.WARNING_MESSAGE);
 			}
 			isFullName = Toolkit.isFullName(name); //Debe tener 1 nombre y 2 apellidos
 			if(!isFullName) {
-				JOptionPane.showMessageDialog(null, "Debe ingresar 1 nombre y 2 apellidos");
+				JOptionPane.showMessageDialog(null, "Debe ingresar 1 nombre y 2 apellidos", "Alerta", JOptionPane.WARNING_MESSAGE);
 			}
 			isAgeCorrect = Toolkit.checkNumber(age);
 			if(!isAgeCorrect) {
-				JOptionPane.showMessageDialog(null, "La edad deberían ser solo números");
+				JOptionPane.showMessageDialog(null, "La edad deberían ser solo números", "Alerta", JOptionPane.WARNING_MESSAGE);
+			}
+			isSalaryCorrect = Toolkit.checkNumber(salary);
+			if(!isSalaryCorrect) {
+				JOptionPane.showMessageDialog(null, "El salario debe ser correcto", "Alerta", JOptionPane.WARNING_MESSAGE);
+			}
+			isHeightCorrect = Toolkit.checkNumber(height);
+			if(!isHeightCorrect) {
+				JOptionPane.showMessageDialog(null, "La altura debe ser correcta", "Alerta", JOptionPane.WARNING_MESSAGE);
 			}
 			
-			if(isNameCorrect && isFullName && isAgeCorrect) {
+			if(isNameCorrect && isFullName && isAgeCorrect && isSalaryCorrect && isHeightCorrect) {
 				//Crear objeto y agregarlo a la base de datos
-				User newUser = UserFactory.createMan(resUsernameFieldRegister, Integer.parseInt(age), email, resRegisterComboBoxMV, Integer.parseInt(height), Double.parseDouble(salary), name, isAvailable, bornDate, resPasswordFieldRegister);
+				User newUser = UserFactory.createMan(resUsernameFieldRegister, Integer.parseInt(age), email, resRegisterComboBoxMV, Integer.parseInt(height), Double.parseDouble(salary), name, isAvailable, bornDate, resPasswordFieldRegister, 0, 0);
 				//System.out.println(newUser.getClass().getSimpleName());
-				DTO.addUser(newUser);
-				//Eliminar campos de texto
+				DTO.addUser(newUser); //Está dejando muchos espacios antes en el csv
 				
+				//Eliminar campos de texto
 				MV.getMRV().resetAllFieldsMRV();
 				MV.getRV().setNameField("");
 				MV.getRV().setPasswordField("");
+				
+				//Enviar correo de información
+				Toolkit.sendMail(newUser);
+				JOptionPane.showMessageDialog(null, "Usuario creado exitosamente\nInicie sesión a continuación", "Bienvenido", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
 			break;
@@ -299,9 +337,22 @@ public class Controller implements ActionListener{
 			}
 			
 			if(isNameCorrect && isFullName && isAgeCorrect) {
-				User newUser = UserFactory.createWoman(resUsernameFieldRegister, resPasswordFieldRegister, name, Integer.parseInt(age), email, bornDate, isAvailable, isDivorced, resRegisterComboBoxMV);
-				//System.out.println(newUser.getPassword());
-				DTO.addUser(newUser);
+				if(!MV.getWRP().getHeightRegField().getText().isEmpty()) { //Si puso altura
+					isHeightCorrect = Toolkit.checkNumber(height);
+					if(isHeightCorrect) {
+						User newUser = UserFactory.createWoman(resUsernameFieldRegister, resPasswordFieldRegister, name, Integer.parseInt(age), email, bornDate, isAvailable, isDivorced, resRegisterComboBoxMV, Integer.parseInt(height), 0, 0);
+						//System.out.println(newUser.getPassword());
+						DTO.addUser(newUser);
+						Toolkit.sendMail(newUser);
+					}else {
+						JOptionPane.showMessageDialog(null, "La altura debe ser correcta", "Alerta", JOptionPane.WARNING_MESSAGE);
+					}
+					
+				}else { //Si no puso altura
+					User newUser = UserFactory.createWoman(resUsernameFieldRegister, resPasswordFieldRegister, name, Integer.parseInt(age), email, bornDate, isAvailable, isDivorced, resRegisterComboBoxMV, 0, 0);
+					DTO.addUser(newUser);
+					Toolkit.sendMail(newUser);
+				}
 				MV.getMUV().setVisible(false);
 				MV.getMP().setVisible(true);
 			}
@@ -328,10 +379,18 @@ public class Controller implements ActionListener{
 			
 			//Actualizar datos
 			randomUser = DTO.retrieveRandomUser();
+			try {
 			MV.getMUV().setNameValue(randomUser.getName());
 			MV.getMUV().setUsernameValue(randomUser.getUsername());
 			MV.getMUV().setAgeValue(Integer.toString(randomUser.getAge()));
 			MV.getMUV().setHeightValue(Integer.toString(randomUser.getHeight()));
+			
+			//Give like
+			randomUser.setLikesAmount(randomUser.getLikesAmount() + 1);
+			actualUser.setSentLikesAmount(actualUser.getSentLikesAmount() + 1);
+			System.out.println("Likes enviados: " + actualUser.getSentLikesAmount());
+			
+			//Actualizar datos especiales
 			if(randomUser.getClass().getSimpleName().toLowerCase().equals("man")) {
 				MV.getMUV().setSalaryValue(Double.toString(((Man)randomUser).getSalary()));
 				MV.getMUV().setDivorceValue("No aplica");
@@ -341,6 +400,9 @@ public class Controller implements ActionListener{
 				MV.getMUV().setSalaryValue("No aplica");
 			}
 			MV.getMUV().updateUserData();
+			}catch(NullPointerException x) {
+				System.out.println("No se pudo extraer un usuario al azar");
+			}
 			break;
 			
 		case "dislikeMUV":

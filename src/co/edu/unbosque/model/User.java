@@ -27,7 +27,7 @@ public class User {
 	protected int matchAmount = 0;
 	
 	//Para mujeres (Sin altura)
-	public User(String username, int age, String mail, String gender, String name, boolean isAvailable, Date bornDate, String password, boolean isDivorced) {
+	public User(String username, int age, String mail, String gender, String name, boolean isAvailable, Date bornDate, String password, boolean isDivorced, int likesAmount, int likesSent) {
 		this.username = username;
 		this.age = age;
 		this.mail = mail;
@@ -35,11 +35,13 @@ public class User {
 		this.name = name;
 		this.isAvailable = isAvailable;
 		this.simpleBornDate = dateFormat.format(bornDate);
+		this.likesAmount = likesAmount;
+		this.sentLikesAmount = likesSent;
 		divideName();
 		setupData();
 	}
 	//Para mujeres (Con altura)
-	public User(String username, int age, String mail, String gender, String name, boolean isAvailable, Date bornDate, String password, boolean isDivorced, int height) {
+	public User(String username, int age, String mail, String gender, String name, boolean isAvailable, Date bornDate, String password, boolean isDivorced, int height, int likesAmount, int likesSent) {
 		this.username = username;
 		this.age = age;
 		this.mail = mail;
@@ -48,12 +50,14 @@ public class User {
 		this.isAvailable = isAvailable;
 		this.simpleBornDate = dateFormat.format(bornDate);
 		this.height = height;
+		this.likesAmount = likesAmount;
+		this.sentLikesAmount = likesSent;
 		divideName();
 		setupData();
 	}
 	
 	//Para hombres, porque la altura es obligatoria
-	public User(String username, int age, String mail, String gender, String name, int height, boolean isAvailable, Date bornDate, String password) {
+	public User(String username, int age, String mail, String gender, String name, int height, boolean isAvailable, Date bornDate, String password, int likesAmount, int likesSent) {
 		this.username = username;
 		this.age = age;
 		this.mail = mail;
@@ -63,6 +67,8 @@ public class User {
 		this.password = password;
 		this.isAvailable = isAvailable;
 		this.simpleBornDate = dateFormat.format(bornDate);
+		this.likesAmount = likesAmount;
+		this.sentLikesAmount = likesSent;
 		divideName();
 		setupData();
 		
