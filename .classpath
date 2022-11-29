@@ -8,7 +8,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
-	<classpathentry kind="lib" path="C:/Users/HP/Desktop/Java toolbox/jaf-1.1.1/activation.jar"/>
-	<classpathentry kind="lib" path="C:/Users/HP/Desktop/Java toolbox/javax.mail.jar"/>
+	<classpathentry kind="lib" path="requeriments/activation.jar"/>
+	<classpathentry kind="lib" path="requeriments/javax.mail.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
