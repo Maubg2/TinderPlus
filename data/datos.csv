@@ -465,5 +465,4 @@ Id;Nombre;Apellido1;Apellido2;Sexo;Usuario;Contraseña;Correo;Nacimiento;Edad;Ing
 464;RocÃ­o;Del Valle;Ribera;M;r.de;[C%v$cq,/k&2*:r;r.de@mail.net;25/02/1985;34;;SI;73;99;0;Inactivo;143
 465;Carlos;Carrasco;Da Silva;H;carloscarrasco;$ZAX/d&-=!9@?MQ;carloscarrasco@email.net;26/08/1980;39;874,98;No Aplica;53;92;1;Inactivo;199
 466;Juan Carlos;Galindo;Santana;H;juagalindo;P,u[2PyrjNM_:_9;juagalindo@correo.net;13/12/2001;17;717,09;No Aplica;35;59;3;Disponible;139
-8080;Administrador;admin;1234;;;;;;;;;;;;;
-468;Ejemplo;Mujer;Prueba;M;EjemploMujer;1234;felipepoveda273@gmail.com;05/11/2024;18;;SI;0;0;0;Disponible469;Ejemplo;Mujer;Prueba;M;EjemploMujer2;1234;felipepoveda273@gmail.com;05/11/2024;17;;NO;0;0;0;Inactivo469;Ejemplo;Mujer;Tres;M;EjemploMujer3;1234;felipepoveda273@gmail.com;05/11/2024;19;;NO;0;0;0;Inactivo
+8080;Administrador;admin;1234;0;0;0;0;0/01/1900;0;0;0;0;0;0;0;0

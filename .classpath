@@ -10,5 +10,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
 	<classpathentry kind="lib" path="requeriments/activation.jar"/>
 	<classpathentry kind="lib" path="requeriments/javax.mail.jar"/>
+	<classpathentry kind="lib" path="requeriments/opencsv-5.7.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

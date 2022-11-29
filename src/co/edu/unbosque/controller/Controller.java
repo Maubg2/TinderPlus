@@ -158,8 +158,8 @@ public class Controller implements ActionListener{
 			String username = MV.getLV().getUserField().getText();
 			String password = String.valueOf(MV.getLV().getPsswdField().getPassword()); //ValueOf porque getPassword devuelve un array de chars
 			//2. Mandar a buscar el usuario con esos datos
-			try {
 				boolean validUser = DTO.checkUser(username, password);
+				boolean validAdmin = DTO.checkAdmin(username, password);
 				if(validUser) {
 					//System.out.println("Usuario existe");
 					MV.getLV().setVisible(false);
@@ -193,9 +193,8 @@ public class Controller implements ActionListener{
 					MV.getMUV().updateUserData();
 					
 				}
-			}catch(ArrayIndexOutOfBoundsException x) {
-				boolean validAdmin = DTO.checkAdmin(username, password);
-				if(validAdmin) {
+				else if(validAdmin) {
+					//System.out.println("Probando admin");
 					MV.getLV().setVisible(false);
 					MV.getMAV().setVisible(true);
 					MV.getLV().setUserField("");
@@ -205,8 +204,11 @@ public class Controller implements ActionListener{
 					MV.getLV().setPsswdField("");
 					JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
 				}
+				
+				
+				
 	
-			}
+			
 			
 			/*
 			else {
@@ -543,6 +545,7 @@ public class Controller implements ActionListener{
 			break;
 			
 		case "modifyUserAdmin":
+			//Pendiente
 			break;
 		
 		case "deleteUserAdmin":

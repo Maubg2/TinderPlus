@@ -1,11 +1,17 @@
 package co.edu.unbosque.model;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
+import com.opencsv.exceptions.CsvException;
 
 /**
  * 
@@ -149,7 +155,7 @@ public class AppDTO implements AppDAO{
 			while((line = reader.readLine()) != null) {
 				
 				String[] row = line.split(";");
-				
+				//System.out.println("tamaño row: " + row.length);
 				if(row[5].equals(username)) {
 					if(row[4].equals("H")) {
 						searchedUser = UserFactory.createMan(row[5], Integer.parseInt(row[9]), row[7], row[4], Integer.parseInt(row[16]), Float.parseFloat(row[10].replace(",", ".")), row[1] + " " + row[2] + " " + row[3], Boolean.parseBoolean(row[15]), Toolkit.parseDateAsString(row[8]), row[6], Integer.parseInt(row[12]), Integer.parseInt(row[13]));
@@ -201,12 +207,30 @@ public class AppDTO implements AppDAO{
 	//Para agregar o quitar likes
 	//Como modificar una celda?
 	@Override
-	public void modifyUser(String parameter) {
-		parameter = parameter.toLowerCase();
-		switch(parameter) {
-		case "":
-			break;
-		}
+	public void modifyUser(String newValue, int row, int col) throws IOException {
+		File inputFile = new File(file);
+
+		// Read existing file 
+		CSVReader reader = new CSVReader(new FileReader(inputFile));
+		List<String[]> csvBody;
+		try {
+			csvBody = reader.readAll();
+			csvBody.get(row)[col] = newValue;
+			reader.close();
+			
+			// Write to CSV file which is open
+			CSVWriter writer = new CSVWriter(new FileWriter(inputFile));
+			writer.writeAll(csvBody);
+			writer.flush();
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (CsvException e) {
+			e.printStackTrace();
+		}		
+
+		
+		
 	}
 
 	@Override
@@ -423,4 +447,6 @@ public class AppDTO implements AppDAO{
 			System.out.println("Error al abrir el archivo csv: Cierre el archivo e inténtelo de nuevo");
 		} 
 	}
+
+
 }
