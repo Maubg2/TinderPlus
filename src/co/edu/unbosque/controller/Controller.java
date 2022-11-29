@@ -276,6 +276,7 @@ public class Controller implements ActionListener{
 				MV.getRV().setPasswordField("");
 				MV.getMRV().resetAllFieldsMRV();
 			}
+			
 				
 			break;
 		case "nextMRV": //Boton siguiente hombre
