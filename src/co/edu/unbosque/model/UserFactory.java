@@ -28,6 +28,10 @@ public class UserFactory {
 		return new Woman(username, password, name, age, mail, bornDate, isAvailable, isDivorced, gender, height, likesAmount, likesSent);
 	}
 	
+	//Admin creator
+	public static Admin createAdmin(String name, String username, String password) {
+		return new Admin(name, username, password);
+	}
 	
 	
 }

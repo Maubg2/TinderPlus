@@ -47,7 +47,7 @@ public class MainAdminView extends JPanel{
 	public void funcionar() {
 		
 		titleAdminView = new JLabel("Administrador");
-		titleAdminView.setBounds(230, 2, 150, 70);
+		titleAdminView.setBounds(230, 2, 180, 70);
 		titleAdminView.setForeground(Color.BLACK);
 		titleAdminView.setFont(new Font("Times New Roman", Font.BOLD, 25));
 		add(titleAdminView);
@@ -108,7 +108,7 @@ public class MainAdminView extends JPanel{
 		refreshListAdmin.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(refreshListAdmin);
 		
-		backButtonAdmin = new JButton("Volver");
+		backButtonAdmin = new JButton("Salir");
 		backButtonAdmin.setBounds(30, 340, 90, 25);
 		backButtonAdmin.setBackground(Color.decode("#EA047E"));
 		backButtonAdmin.setBorder(new EtchedBorder(100));

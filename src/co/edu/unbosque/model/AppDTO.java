@@ -179,6 +179,24 @@ try {
 		return searchedUser;
 
 	}
+	
+	public Admin searchAdmin(String username) {
+		Admin returnableAdmin = null;
+		
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			
+			while((line = reader.readLine()) != null) {
+				String[] row = line.split(";");
+				if(row[2].equals(username)) {
+					returnableAdmin = UserFactory.createAdmin(row[1], row[2], row[3]);
+				}
+			}
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		return returnableAdmin;
+	}
 
 	//Para agregar o quitar likes
 	//Como modificar una celda?
@@ -274,7 +292,7 @@ try {
 	@Override
 	public boolean checkAdmin(String username, String password) {
 		
-		String username1 = "administrador";
+		String username1 = "admin";
 		String password1 = "1234";
 		
 		if(username.equals(username1) && password.equals(password1)) {
@@ -373,5 +391,36 @@ try {
 			}	
 		}
 		return contador;
+	}
+	
+	/**
+	 * Método usado exclusivamente para añadir un usuario administrador
+	 * @param admin
+	 */
+	public void addUser(Admin admin) {
+		FileWriter out;
+		
+		try {
+			
+			out = new FileWriter(file, true); //El true es para que no borre los datos que habían
+			/*
+			out.write(data);
+			out.write(";");
+			out.write(data2);
+			*/
+ 			out.write("8080"); //Admin ID (exclusiva)
+ 			out.write(";");
+ 			out.write(admin.getName());
+ 			out.write(";");
+ 			out.write(admin.getUsername());
+ 			out.write(";");
+ 			out.write(admin.getPassword());
+ 			out.write(";");
+			
+			out.close();
+		} catch (IOException e) {
+			//e.printStackTrace();
+			System.out.println("Error al abrir el archivo csv: Cierre el archivo e inténtelo de nuevo");
+		} 
 	}
 }

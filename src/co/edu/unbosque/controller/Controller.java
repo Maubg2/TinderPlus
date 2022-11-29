@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
 
+import co.edu.unbosque.model.Admin;
 import co.edu.unbosque.model.AppDTO;
 import co.edu.unbosque.model.Man;
 import co.edu.unbosque.model.Toolkit;
@@ -52,6 +53,13 @@ public class Controller implements ActionListener{
 	//Logged user
 	User actualUser;
 	
+	//Logged admin
+	Admin actualAdmin;
+	
+	/**
+	 * Constructor de la clase, usado para instanciar los objetos importnates como la vista 
+	 * principal, el DTO y el usuario Admin
+	 */
 	public Controller() {
 		MV = new MainView();
 		DTO = new AppDTO();
@@ -60,6 +68,10 @@ public class Controller implements ActionListener{
 		MV.setLocationRelativeTo(null);
 		MV.setVisible(true);*/
 		//DTO.displayDB(); //Debug
+		
+		//Admin init
+		//DTO.addUser(UserFactory.createAdmin("Administrador", "admin", "1234"));
+		
 	}
 	
 	public void setListeners() {
@@ -92,7 +104,7 @@ public class Controller implements ActionListener{
 		MV.getWRP().getNextButton().addActionListener(this);
 		MV.getWRP().getNextButton().setActionCommand("nextWRP");
 		
-		//Main user view Listeners
+		//Main user view listeners
 		MV.getMUV().getBackButtonUser().addActionListener(this);
 		MV.getMUV().getBackButtonUser().setActionCommand("backMUV");
 		
@@ -101,6 +113,23 @@ public class Controller implements ActionListener{
 		
 		MV.getMUV().getDislikeButtonUser().addActionListener(this);
 		MV.getMUV().getDislikeButtonUser().setActionCommand("dislikeMUV");
+		
+		//Main admin view listeners (CRUD)
+		MV.getMAV().getAddAdminView().addActionListener(this);
+		MV.getMAV().getAddAdminView().setActionCommand("addUserAdmin");
+		
+		MV.getMAV().getModifyAdminView().addActionListener(this);
+		MV.getMAV().getModifyAdminView().setActionCommand("modifyUserAdmin");
+		
+		MV.getMAV().getDeleteAdminView().addActionListener(this);
+		MV.getMAV().getDeleteAdminView().setActionCommand("deleteUserAdmin");
+		
+		MV.getMAV().getSearchAdminView().addActionListener(this);
+		MV.getMAV().getSearchAdminView().setActionCommand("searchUserAdmin");
+		
+		MV.getMAV().getBackButtonAdmin().addActionListener(this);
+		MV.getMAV().getBackButtonAdmin().setActionCommand("backAdminView");
+		
 	}
 
 	@Override
@@ -129,58 +158,81 @@ public class Controller implements ActionListener{
 			String username = MV.getLV().getUserField().getText();
 			String password = String.valueOf(MV.getLV().getPsswdField().getPassword()); //ValueOf porque getPassword devuelve un array de chars
 			//2. Mandar a buscar el usuario con esos datos
-			boolean validUser = DTO.checkUser(username, password);
-			boolean validAdmin = DTO.checkAdmin(username, password);
-			if(validUser) {
-				//System.out.println("Usuario existe");
-				MV.getLV().setVisible(false);
-				MV.getMUV().setVisible(true);
-				MV.getLV().setUserField("");
-				MV.getLV().setPsswdField("");
-				
-				//Crear imagenes
-				randomImage = DTO.retrieveImageSrc();
-				MV.getMUV().setRandomImage(randomImage);
-				MV.getMUV().updateImage();
-				
-				//Cargar usuario actual
-				actualUser = DTO.searchUser(username);
-				//System.out.println(actualUser.toString()); //Debug
-				
-				//Cargar datos
-				randomUser = DTO.retrieveRandomUser();
-				MV.getMUV().setNameValue(randomUser.getName());
-				MV.getMUV().setUsernameValue(randomUser.getUsername());
-				MV.getMUV().setAgeValue(Integer.toString(randomUser.getAge()));
-				MV.getMUV().setHeightValue(Integer.toString(randomUser.getHeight()));
-				if(randomUser.getClass().getSimpleName().toLowerCase().equals("man")) {
-					MV.getMUV().setSalaryValue(Double.toString(((Man)randomUser).getSalary()));
-					MV.getMUV().setDivorceValue("No aplica");
+			try {
+				boolean validUser = DTO.checkUser(username, password);
+				if(validUser) {
+					//System.out.println("Usuario existe");
+					MV.getLV().setVisible(false);
+					MV.getMUV().setVisible(true);
+					MV.getLV().setUserField("");
+					MV.getLV().setPsswdField("");
+					
+					//Crear imagenes
+					randomImage = DTO.retrieveImageSrc();
+					MV.getMUV().setRandomImage(randomImage);
+					MV.getMUV().updateImage();
+					
+					//Cargar usuario actual
+					actualUser = DTO.searchUser(username);
+					//System.out.println(actualUser.toString()); //Debug
+					
+					//Cargar datos
+					randomUser = DTO.retrieveRandomUser();
+					MV.getMUV().setNameValue(randomUser.getName());
+					MV.getMUV().setUsernameValue(randomUser.getUsername());
+					MV.getMUV().setAgeValue(Integer.toString(randomUser.getAge()));
+					MV.getMUV().setHeightValue(Integer.toString(randomUser.getHeight()));
+					if(randomUser.getClass().getSimpleName().toLowerCase().equals("man")) {
+						MV.getMUV().setSalaryValue(Double.toString(((Man)randomUser).getSalary()));
+						MV.getMUV().setDivorceValue("No aplica");
+					}
+					else if(randomUser.getClass().getSimpleName().toLowerCase().equals("woman")) {
+						MV.getMUV().setDivorceValue(((Woman) randomUser).getIsDivorced());
+						MV.getMUV().setSalaryValue("No aplica");
+					}
+					MV.getMUV().updateUserData();
+					
 				}
-				else if(randomUser.getClass().getSimpleName().toLowerCase().equals("woman")) {
-					MV.getMUV().setDivorceValue(((Woman) randomUser).getIsDivorced());
-					MV.getMUV().setSalaryValue("No aplica");
+			}catch(ArrayIndexOutOfBoundsException x) {
+				boolean validAdmin = DTO.checkAdmin(username, password);
+				if(validAdmin) {
+					MV.getLV().setVisible(false);
+					MV.getMAV().setVisible(true);
+					MV.getLV().setUserField("");
+					MV.getLV().setPsswdField("");
+					actualAdmin = DTO.searchAdmin(username);
+				}else {
+					MV.getLV().setPsswdField("");
+					JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
 				}
-				MV.getMUV().updateUserData();
-				
-			}else if(validAdmin) {
-				MV.getLV().setVisible(false);
-				MV.getMAV().setVisible(true);
-				MV.getLV().setUserField("");
-				MV.getLV().setPsswdField("");
+	
 			}
+			
+			/*
 			else {
 				//System.out.println("Usuario no existe");
-				MV.getLV().setPsswdField("");
-				JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
+				
 			}
+			*/
 			break;
 		case "backRegisterView":
-			MV.getRV().setVisible(false);
-			MV.getMP().setVisible(true);
-			//Reiniciar campos
-			MV.getRV().setNameField("");
-			MV.getRV().setPasswordField("");
+			if(actualUser != null) {
+				//Volver al panel principal si es usuario
+				MV.getRV().setVisible(false);
+				MV.getMP().setVisible(true);
+				
+				//Reiniciar campos (Si es usuario)
+				MV.getRV().setNameField("");
+				MV.getRV().setPasswordField("");
+			}else if(actualAdmin != null) {
+				//Volver al panel de admin si es administrador
+				MV.getRV().setVisible(false);
+				MV.getMAV().setVisible(true);
+				
+				//Reiniciar campos (Si es admin)
+				MV.getRV().setNameField("");
+				MV.getRV().setPasswordField("");
+			}
 			break;
 		case "nextButtonRegisterView":
 			resRegisterComboBoxMV = MV.getRV().getRegisterGenderBox().getSelectedItem().toString().toLowerCase();
@@ -205,11 +257,23 @@ public class Controller implements ActionListener{
 		
 		//Men register view
 		case "exitMRV":
-			MV.getMRV().setVisible(false);
-			MV.getMP().setVisible(true);
-			//Reiniciar valores
-			MV.getRV().setNameField("");
-			MV.getRV().setPasswordField("");
+			
+			if(actualUser != null) {
+				//Volver al panel principal de usuario
+				MV.getMRV().setVisible(false);
+				MV.getMP().setVisible(true);
+				//Reiniciar valores
+				MV.getRV().setNameField("");
+				MV.getRV().setPasswordField("");
+			}else if(actualAdmin != null) {
+				//Volver al panel principal de usuario
+				MV.getMRV().setVisible(false);
+				MV.getMAV().setVisible(true);
+				//Reiniciar valores
+				MV.getRV().setNameField("");
+				MV.getRV().setPasswordField("");
+			}
+				
 			break;
 		case "nextMRV": //Boton siguiente hombre
 			MV.getMRV().setVisible(false);
@@ -368,6 +432,10 @@ public class Controller implements ActionListener{
 		case "backMUV":
 			MV.getMUV().setVisible(false);
 			MV.getMP().setVisible(true);
+			
+			//Eliminar al usuario actual
+			actualUser = null;
+			
 			break;
 			
 		case "likeMUV":
@@ -426,6 +494,30 @@ public class Controller implements ActionListener{
 				MV.getMUV().setSalaryValue("No aplica");
 			}
 			MV.getMUV().updateUserData();
+			break;
+			
+		//MainAdminView section
+		case "addUserAdmin":
+			MV.getMAV().setVisible(false);
+			MV.getRV().setVisible(true);
+			//DTO.addUser()
+			break;
+			
+		case "modifyUserAdmin":
+			break;
+		
+		case "deleteUserAdmin":
+			break;
+		
+		case "searchUserAdmin":
+			break;
+			
+		case "backAdminView":
+			MV.getMAV().setVisible(false);
+			MV.getMP().setVisible(true);
+			
+			//Eliminar al administrador actual
+			actualAdmin = null;
 			break;
 		default:
 			break;
