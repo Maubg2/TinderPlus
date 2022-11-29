@@ -279,6 +279,7 @@ public class Controller implements ActionListener{
 				
 			break;
 		case "nextMRV": //Boton siguiente hombre
+			
 			MV.getMRV().setVisible(false);
 			MV.getMP().setVisible(true);
 			//Recolectar datos y crear objeto
