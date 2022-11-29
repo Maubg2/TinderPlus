@@ -29,6 +29,7 @@ public class User {
 	//Para mujeres (Sin altura)
 	public User(String username, int age, String mail, String gender, String name, boolean isAvailable, Date bornDate, String password, boolean isDivorced, int likesAmount, int likesSent) {
 		this.username = username;
+		this.password = password;
 		this.age = age;
 		this.mail = mail;
 		this.gender = gender;
@@ -43,6 +44,7 @@ public class User {
 	//Para mujeres (Con altura)
 	public User(String username, int age, String mail, String gender, String name, boolean isAvailable, Date bornDate, String password, boolean isDivorced, int height, int likesAmount, int likesSent) {
 		this.username = username;
+		this.password = password;
 		this.age = age;
 		this.mail = mail;
 		this.gender = gender;

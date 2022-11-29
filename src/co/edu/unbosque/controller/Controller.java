@@ -216,20 +216,21 @@ public class Controller implements ActionListener{
 			*/
 			break;
 		case "backRegisterView":
-			if(actualUser != null) {
-				//Volver al panel principal si es usuario
-				MV.getRV().setVisible(false);
-				MV.getMP().setVisible(true);
-				
-				//Reiniciar campos (Si es usuario)
-				MV.getRV().setNameField("");
-				MV.getRV().setPasswordField("");
-			}else if(actualAdmin != null) {
+			if(actualAdmin != null) {
 				//Volver al panel de admin si es administrador
 				MV.getRV().setVisible(false);
 				MV.getMAV().setVisible(true);
 				
 				//Reiniciar campos (Si es admin)
+				MV.getRV().setNameField("");
+				MV.getRV().setPasswordField("");
+				
+			}else {
+				//Volver al panel principal si es usuario
+				MV.getRV().setVisible(false);
+				MV.getMP().setVisible(true);
+				
+				//Reiniciar campos (Si es usuario)
 				MV.getRV().setNameField("");
 				MV.getRV().setPasswordField("");
 			}
@@ -258,20 +259,22 @@ public class Controller implements ActionListener{
 		//Men register view
 		case "exitMRV":
 			
-			if(actualUser != null) {
+			if(actualAdmin != null) {
+				//Volver al panel principal de admin
+				MV.getMRV().setVisible(false);
+				MV.getMAV().setVisible(true);
+				//Reiniciar valores
+				MV.getRV().setNameField("");
+				MV.getRV().setPasswordField("");
+				MV.getMRV().resetAllFieldsMRV();
+			}else {
 				//Volver al panel principal de usuario
 				MV.getMRV().setVisible(false);
 				MV.getMP().setVisible(true);
 				//Reiniciar valores
 				MV.getRV().setNameField("");
 				MV.getRV().setPasswordField("");
-			}else if(actualAdmin != null) {
-				//Volver al panel principal de usuario
-				MV.getMRV().setVisible(false);
-				MV.getMAV().setVisible(true);
-				//Reiniciar valores
-				MV.getRV().setNameField("");
-				MV.getRV().setPasswordField("");
+				MV.getMRV().resetAllFieldsMRV();
 			}
 				
 			break;
@@ -347,21 +350,47 @@ public class Controller implements ActionListener{
 				
 				//Enviar correo de información
 				Toolkit.sendMail(newUser);
-				JOptionPane.showMessageDialog(null, "Usuario creado exitosamente\nInicie sesión a continuación", "Bienvenido", JOptionPane.INFORMATION_MESSAGE);
+				//Mirar quién fue el que entró a esta vista
+				if(actualAdmin != null) {
+					MV.getMRV().setVisible(false);
+					MV.getMAV().setVisible(true);
+					JOptionPane.showMessageDialog(null, "Usuario creado exitosamente\nVolverá al panel del administrador", "Información", JOptionPane.INFORMATION_MESSAGE);
+					
+				}else {
+					MV.getMRV().setVisible(false);
+					MV.getMP().setVisible(true);
+					JOptionPane.showMessageDialog(null, "Usuario creado exitosamente\nInicie sesión a continuación", "Bienvenido", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
 			}
 			
 			break;
 			
 		//Woman register view
 		case "exitWRP":
-			MV.getWRP().setVisible(false);
-			MV.getMP().setVisible(true);
-			//Reiniciar valores
-			MV.getRV().setNameField("");
-			MV.getRV().setPasswordField("");
-			MV.getWRP().resetAllDataWRV();
+			//Si fue el usuario quien ingresó al resgitro, al volver volverá a la página principal
+			//Si fue el administrador quien ingresó, al volver volverá al panel principal de admin
+			if(actualAdmin != null) {
+				//Volver al panel principal de admin
+				MV.getWRP().setVisible(false);
+				MV.getMAV().setVisible(true);
+				//Reiniciar valores
+				MV.getRV().setNameField("");
+				MV.getRV().setPasswordField("");
+				MV.getWRP().resetAllDataWRV();
+				
+			}else {
+				//Volver al panel principal de usuario
+				MV.getWRP().setVisible(false);
+				MV.getMP().setVisible(true);
+				//Reiniciar valores
+				MV.getRV().setNameField("");
+				MV.getRV().setPasswordField("");
+				MV.getWRP().resetAllDataWRV();
+			}
 			break;
-		case "nextWRP": //Recoger datos de mujer
+			
+		case "nextWRP": //Recoger datos de mujer (Botón siguiente mujer)
 			//System.out.println("Next woman");
 			ArrayList<Object> collectedWomanData = MV.getWRP().collectWomenData();
 			
@@ -417,15 +446,23 @@ public class Controller implements ActionListener{
 					DTO.addUser(newUser);
 					Toolkit.sendMail(newUser);
 				}
-				MV.getMUV().setVisible(false);
-				MV.getMP().setVisible(true);
+				//Mirar quién fue el que entró a esta vista
+				if(actualAdmin != null) {
+					MV.getWRP().setVisible(false);
+					MV.getMAV().setVisible(true);
+					JOptionPane.showMessageDialog(null, "Usuario creado exitosamente\nVolverá al panel del administrador", "Información", JOptionPane.INFORMATION_MESSAGE);
+					
+				}else{ //Fue un usuario
+					MV.getWRP().setVisible(false);
+					MV.getMP().setVisible(true);
+					JOptionPane.showMessageDialog(null, "Usuario creado exitosamente\nInicie sesión a continuación", "Bienvenido", JOptionPane.INFORMATION_MESSAGE);
+				}
+				//Eliminar campos de texto
+				MV.getRV().setNameField("");
+				MV.getRV().setPasswordField("");
+				MV.getWRP().resetAllDataWRV();
+				
 			}
-		
-			//Eliminar campos de texto
-			
-			MV.getRV().setNameField("");
-			MV.getRV().setPasswordField("");
-			MV.getWRP().resetAllDataWRV();
 			break;
 			
 		//MainUserView

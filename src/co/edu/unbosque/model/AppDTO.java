@@ -85,7 +85,7 @@ public class AppDTO implements AppDAO{
 			break;
 			
 		case "Woman":
-try {
+			try {
 				
 				out = new FileWriter(file, true); //El true es para que no borre los datos que habían
 				/*
@@ -105,7 +105,7 @@ try {
 	 			out.write(";");
 	 			out.write(user.getUsername());
 	 			out.write(";");
-	 			out.write(user.getPassword());
+	 			out.write(user.getPassword()); //Sale nula
 	 			out.write(";");
 	 			out.write(user.getMail());
 	 			out.write(";");
