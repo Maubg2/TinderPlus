@@ -75,6 +75,7 @@ public class Controller implements ActionListener{
 	}
 	
 	public void setListeners() {
+		
 		//MainPanel Listeners
 		MV.getMP().getLogInButton().addActionListener(this);
 		MV.getMP().getLogInButton().setActionCommand("iniciarSesion");
@@ -318,8 +319,9 @@ public class Controller implements ActionListener{
 			salary = (String) collectedMenData.get(6);
 			
 			//Debug
-			System.out.println("Nombre: " + name + "\n" + "Edad: " + age + "\n" + "Email: " + email + "\n" + "Altura: " + height + "\nFecha: " + bornDate + "\nDisponible: " + isAvailable + "\nSalario: " + salary);
+			//System.out.println("Nombre: " + name + "\n" + "Edad: " + age + "\n" + "Email: " + email + "\n" + "Altura: " + height + "\nFecha: " + bornDate + "\nDisponible: " + isAvailable + "\nSalario: " + salary);
 			
+			//Checkear validez de datos
 			isNameCorrect = Toolkit.checkData(name); 
 			if(!isNameCorrect) {
 				JOptionPane.showMessageDialog(null, "El nombre no debe contener caracteres especiales", "Alerta", JOptionPane.WARNING_MESSAGE);
@@ -497,7 +499,8 @@ public class Controller implements ActionListener{
 			//Give like
 			randomUser.setLikesAmount(randomUser.getLikesAmount() + 1);
 			actualUser.setSentLikesAmount(actualUser.getSentLikesAmount() + 1);
-			System.out.println("Likes enviados: " + actualUser.getSentLikesAmount());
+			//Debug
+			//System.out.println("Likes enviados: " + actualUser.getSentLikesAmount());
 			
 			//Actualizar datos especiales
 			if(randomUser.getClass().getSimpleName().toLowerCase().equals("man")) {

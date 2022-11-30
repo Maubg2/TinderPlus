@@ -71,6 +71,7 @@ public class User {
 		this.simpleBornDate = dateFormat.format(bornDate);
 		this.likesAmount = likesAmount;
 		this.sentLikesAmount = likesSent;
+		//Pendiente salario
 		divideName();
 		setupData();
 		

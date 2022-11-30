@@ -207,7 +207,75 @@ public class AppDTO implements AppDAO{
 	//Para agregar o quitar likes
 	//Como modificar una celda?
 	@Override
-	public void modifyUser(String newValue, int row, int col) throws IOException {
+	public void modifyUser(String newValue,  String username, String parameter) throws IOException {
+		int row = Integer.parseInt(retrieveUserID(username));
+		int col = 0;
+		
+		//Identificar la columna a modificar (atributo)
+		parameter = parameter.toLowerCase();
+		switch(parameter) {
+		case "nombre":
+			col = 1;
+			break;
+		case "apellido1":
+			col = 2;
+			break;
+		case "apellido2":
+			col = 3;
+			break;
+		case "sexo":
+			col = 4;
+			break;
+		case "usuario":
+			col = 5;
+			break;
+		case "contrasena":
+			col = 6;
+			break;
+		case "correo":
+			col = 7;
+			break;
+		case "nacimiento":
+			col = 8;
+			break;
+		case "edad":
+			col = 9;
+			break;
+		case "ingresos":
+			col = 10;
+			break;
+		case "divorcio":
+			col = 11;
+			break;
+		case "estado":
+			col = 15;
+			break;
+		case "altura":
+			col = 16;
+			break;
+			
+			/*
+			 * row[0] = ID
+			 * row[1] = Nombre
+			 * row[2] = Apellido1
+			 * row[3] = Apellido2
+			 * row[4] = Sexo
+			 * 
+			 * row[5] = Usuario
+			 * row[6] = Contraseña
+			 * 
+			 * row[7] = Correo
+			 * row[8] = Fecha Nacimiento
+			 * row[9] = Edad
+			 * row[10] = Ingresos
+			 * row[11] = Divorcio
+			 * row[12] = No.LikesRecibidos
+			 * row[13] = No.LikesEnviados
+			 * row[14] = No.Matches
+			 * row[15] = Estado
+			 * row[16] = Altura
+			 */
+		}
 		File inputFile = new File(file);
 
 		// Read existing file 
@@ -228,9 +296,24 @@ public class AppDTO implements AppDAO{
 		} catch (CsvException e) {
 			e.printStackTrace();
 		}		
-
+	}
+	
+	public String retrieveUserID(String username) {
 		
-		
+		String returnableId = null; 
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			
+			while((line = reader.readLine()) != null) {
+				String[] row = line.split(";");
+				if(row[5].equals(username)) {
+					returnableId = row[0];
+				}
+			}
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		return returnableId;
 	}
 
 	@Override
@@ -327,7 +410,7 @@ public class AppDTO implements AppDAO{
 	
 	public String retrieveImageSrc() {
 		int randomIndex = (int)(Math.random()*(srcImage.length));
-		System.out.println(randomIndex);
+		//System.out.println(randomIndex); //
 		return srcImage[randomIndex];
 	}
 	
