@@ -8,6 +8,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import co.edu.unbosque.model.Admin;
 import co.edu.unbosque.model.AppDTO;
@@ -548,6 +549,17 @@ public class Controller implements ActionListener{
 			break;
 			
 		case "modifyUserAdmin":
+			String targetUsername = JOptionPane.showInputDialog(null, "Ingrese el nombre del usuario", "Modificar usuario", JOptionPane.INFORMATION_MESSAGE);
+			String targetParameter = JOptionPane.showInputDialog(null, "Ingrese el atributo a modificar", "Modificar usuario", JOptionPane.INFORMATION_MESSAGE);
+			String newValue = JOptionPane.showInputDialog(null, "Ingrese el nuevo valor para " + targetParameter.toLowerCase(), "Modificar usuario");
+			try {
+				DTO.modifyUser(newValue, targetUsername, targetParameter);
+				JOptionPane.showMessageDialog(null, "El usuario ha sido modificado correctamente"
+						+ "\nUsuario: " + targetUsername + "\nParametro: " + targetParameter
+						+ "\nValor final: " + newValue, "Modificar usuario" , JOptionPane.INFORMATION_MESSAGE);
+			} catch (IOException e1) {
+				JOptionPane.showMessageDialog(null, "No se pudo modificar el usuario: Error en Controller: 558", "Error", JOptionPane.ERROR_MESSAGE);
+			}
 			//Pendiente
 			break;
 		

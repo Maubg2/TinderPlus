@@ -1,6 +1,7 @@
 package co.edu.unbosque.model;
 
 import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -10,8 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
+import com.opencsv.exceptions.CsvValidationException;
 
 /**
  * 
@@ -208,14 +211,18 @@ public class AppDTO implements AppDAO{
 	//Como modificar una celda?
 	@Override
 	public void modifyUser(String newValue,  String username, String parameter) throws IOException {
-		int row = Integer.parseInt(retrieveUserID(username));
+		int row = Integer.parseInt(retrieveUserID(username))+ 1;
 		int col = 0;
-		
+		//System.out.println("Fila (ID): " + row + "\nColumna: " + col);
 		//Identificar la columna a modificar (atributo)
 		parameter = parameter.toLowerCase();
+		System.out.println("Parameter: " + parameter);
+		
 		switch(parameter) {
 		case "nombre":
+			//System.out.println("Entró");
 			col = 1;
+			//System.out.println("Col: " + col); //Funciona
 			break;
 		case "apellido1":
 			col = 2;
@@ -276,18 +283,32 @@ public class AppDTO implements AppDAO{
 			 * row[16] = Altura
 			 */
 		}
-		File inputFile = new File(file);
-
-		// Read existing file 
-		CSVReader reader = new CSVReader(new FileReader(inputFile));
+		
+		CSVReader reader = new CSVReader(new FileReader(file));
+		String[] line;
+		
+		try {
+			while((line = reader.readNext()) != null) {
+				System.out.println(line[0] + " " + line[1] + " " + line[2]);
+			}
+		} catch (CsvValidationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		List<String[]> csvBody;
 		try {
 			csvBody = reader.readAll();
+			//String[] rowLine = csvBody.get(col)
+			System.out.println("list: " + csvBody.get(0).length);
 			csvBody.get(row)[col] = newValue;
 			reader.close();
-			
-			// Write to CSV file which is open
-			CSVWriter writer = new CSVWriter(new FileWriter(inputFile));
+
+			//Escribir los cambios
+			CSVWriter writer = new CSVWriter(new FileWriter(file));
 			writer.writeAll(csvBody);
 			writer.flush();
 			writer.close();
@@ -295,7 +316,7 @@ public class AppDTO implements AppDAO{
 			e.printStackTrace();
 		} catch (CsvException e) {
 			e.printStackTrace();
-		}		
+		}
 	}
 	
 	public String retrieveUserID(String username) {

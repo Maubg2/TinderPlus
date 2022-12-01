@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="requeriments/activation.jar"/>
 	<classpathentry kind="lib" path="requeriments/javax.mail.jar"/>
 	<classpathentry kind="lib" path="requeriments/opencsv-5.7.1.jar"/>
+	<classpathentry kind="lib" path="requeriments/commons-lang3-3.12.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
