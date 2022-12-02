@@ -84,6 +84,8 @@ public class AppDTO implements AppDAO{
 	 			out.write(Integer.toString(user.getMatchAmount()));
 	 			out.write(";");
 	 			out.write(user.getIsAvailableString());
+	 			out.write(";");
+	 			out.write(Integer.toString(user.getHeight()));
 				
 				out.close();
 			} catch (IOException e) {
@@ -289,7 +291,16 @@ public class AppDTO implements AppDAO{
 		
 		try {
 			while((line = reader.readNext()) != null) {
-				System.out.println(line[0] + " " + line[1] + " " + line[2]);
+				//System.out.println(line[0]); //Line es todo el csv
+				String[] rowLine = line[0].split(";");
+				System.out.println(rowLine);
+				//String targetCol = rowLine[col];
+				//System.out.println(targetCol);
+				//System.out.println(rowLine[col]);
+				if(rowLine[col].equals(username)) {
+					System.out.println(rowLine[col]);
+				}
+				
 			}
 		} catch (CsvValidationException e1) {
 			// TODO Auto-generated catch block
@@ -298,12 +309,12 @@ public class AppDTO implements AppDAO{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+		/*
 		List<String[]> csvBody;
 		try {
 			csvBody = reader.readAll();
 			//String[] rowLine = csvBody.get(col)
-			System.out.println("list: " + csvBody.get(0).length);
+			//System.out.println("list: " + csvBody.get(0).length);
 			csvBody.get(row)[col] = newValue;
 			reader.close();
 
@@ -317,6 +328,7 @@ public class AppDTO implements AppDAO{
 		} catch (CsvException e) {
 			e.printStackTrace();
 		}
+		*/
 	}
 	
 	public String retrieveUserID(String username) {
@@ -338,7 +350,25 @@ public class AppDTO implements AppDAO{
 	}
 
 	@Override
-	public void deleteUser() {
+	public void deleteUser(User user) {
+		CSVReader reader2;
+		try {
+			reader2 = new CSVReader(new FileReader(file));
+			List<String[]> allElements = reader2.readAll();
+			System.out.println(retrieveUserID(user.getUsername()));
+			//allElements.get(Integer.parseInt(retrieveUserID(user.getUsername())).remove());
+			FileWriter sw = new FileWriter(file);
+			CSVWriter writer = new CSVWriter(sw);
+			writer.writeAll(allElements);
+			writer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (CsvException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -550,6 +580,34 @@ public class AppDTO implements AppDAO{
 			//e.printStackTrace();
 			System.out.println("Error al abrir el archivo csv: Cierre el archivo e inténtelo de nuevo");
 		} 
+	}
+	
+	public String[] retrieveAbsoluteRow(int id) {
+		CSVReader reader;
+		String[] returnableRow = null;
+		try {
+			reader = new CSVReader(new FileReader(file));
+			String [] nextLine;
+	        int columnIndexOfID = 0;
+	        while ((nextLine = reader.readNext()) != null) {
+	            if(nextLine[columnIndexOfID].matches(Integer.toString(id))){
+	            	returnableRow = nextLine;
+	            	break;
+	                //System.out.println(nextLine[0] + nextLine[1] + "etc...");
+	            }               
+	        } 
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (CsvValidationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return returnableRow;
+        
 	}
 
 

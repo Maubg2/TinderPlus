@@ -20,6 +20,8 @@ public class MainAdminView extends JPanel{
 	private JButton deleteAdminView;
 	private JButton searchAdminView;
 	
+	private JButton generateReportAdminView;
+	
 	private JComboBox keywordSortAdmin;
 	private String listKeywordSort[] = {"Likes", "Apellido", "Nombre", "Edad", "Usuario"};
 	private JLabel keywordSortLabel;
@@ -53,36 +55,49 @@ public class MainAdminView extends JPanel{
 		add(titleAdminView);
 		
 		addAdminView = new JButton("Añadir");
-		addAdminView.setBounds(30, 120, 90, 25);
+		addAdminView.setBounds(30, 80, 90, 25);
 		addAdminView.setBackground(Color.decode("#EA047E"));
 		addAdminView.setBorder(new EtchedBorder(100));
 		addAdminView.setForeground(Color.WHITE);
 		addAdminView.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		addAdminView.setFocusable(false);
 		add(addAdminView);
 		
 		modifyAdminView = new JButton("Modificar");
-		modifyAdminView.setBounds(30, 170, 90, 25);
+		modifyAdminView.setBounds(30, 130, 90, 25);
 		modifyAdminView.setBackground(Color.decode("#EA047E"));
 		modifyAdminView.setBorder(new EtchedBorder(100));
 		modifyAdminView.setForeground(Color.WHITE);
 		modifyAdminView.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		modifyAdminView.setFocusable(false);
 		add(modifyAdminView);
 		
 		deleteAdminView = new JButton("Eliminar");
-		deleteAdminView.setBounds(30, 220, 90, 25);
+		deleteAdminView.setBounds(30, 180, 90, 25);
 		deleteAdminView.setBackground(Color.decode("#EA047E"));
 		deleteAdminView.setBorder(new EtchedBorder(100));
 		deleteAdminView.setForeground(Color.WHITE);
 		deleteAdminView.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		deleteAdminView.setFocusable(false);
 		add(deleteAdminView);
 		
 		searchAdminView = new JButton("Buscar");
-		searchAdminView.setBounds(30, 270, 90, 25);
+		searchAdminView.setBounds(30, 230, 90, 25);
 		searchAdminView.setBackground(Color.decode("#EA047E"));
 		searchAdminView.setBorder(new EtchedBorder(100));
 		searchAdminView.setForeground(Color.WHITE);
 		searchAdminView.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		searchAdminView.setFocusable(false);
 		add(searchAdminView);
+		
+		generateReportAdminView = new JButton("Generar reporte");
+		generateReportAdminView.setBounds(30, 280, 120, 25);
+		generateReportAdminView.setBackground(Color.decode("#EA047E"));
+		generateReportAdminView.setBorder(new EtchedBorder(100));
+		generateReportAdminView.setForeground(Color.WHITE);
+		generateReportAdminView.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		generateReportAdminView.setFocusable(false);
+		add(generateReportAdminView);
 		
 		keywordSortAdmin = new JComboBox(listKeywordSort);
 		keywordSortAdmin.setBounds(350, 100, 100, 25);

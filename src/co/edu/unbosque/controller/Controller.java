@@ -72,6 +72,7 @@ public class Controller implements ActionListener{
 		
 		//Admin init
 		//DTO.addUser(UserFactory.createAdmin("Administrador", "admin", "1234"));
+		setMainInvariants();
 		
 	}
 	
@@ -159,6 +160,8 @@ public class Controller implements ActionListener{
 			
 			String username = MV.getLV().getUserField().getText();
 			String password = String.valueOf(MV.getLV().getPsswdField().getPassword()); //ValueOf porque getPassword devuelve un array de chars
+			assert !username.isEmpty(): "El nombre no debe estar vacío"; 
+			assert !password.isEmpty(): "La contraseña no debe estar vacía";
 			//2. Mandar a buscar el usuario con esos datos
 				boolean validUser = DTO.checkUser(username, password);
 				boolean validAdmin = DTO.checkAdmin(username, password);
@@ -176,10 +179,12 @@ public class Controller implements ActionListener{
 					
 					//Cargar usuario actual
 					actualUser = DTO.searchUser(username);
+					assert actualUser != null: "El usuario logueado no debe ser nulo";
 					//System.out.println(actualUser.toString()); //Debug
 					
 					//Cargar datos
 					randomUser = DTO.retrieveRandomUser();
+					assert randomUser != null: "El usuario random no debe ser nulo";
 					MV.getMUV().setNameValue(randomUser.getName());
 					MV.getMUV().setUsernameValue(randomUser.getUsername());
 					MV.getMUV().setAgeValue(Integer.toString(randomUser.getAge()));
@@ -202,22 +207,11 @@ public class Controller implements ActionListener{
 					MV.getLV().setUserField("");
 					MV.getLV().setPsswdField("");
 					actualAdmin = DTO.searchAdmin(username);
+					assert actualAdmin != null: "El administrador actual no debe ser nulo";
 				}else {
 					MV.getLV().setPsswdField("");
 					JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
 				}
-				
-				
-				
-	
-			
-			
-			/*
-			else {
-				//System.out.println("Usuario no existe");
-				
-			}
-			*/
 			break;
 		case "backRegisterView":
 			if(actualAdmin != null) {
@@ -243,6 +237,7 @@ public class Controller implements ActionListener{
 			resRegisterComboBoxMV = MV.getRV().getRegisterGenderBox().getSelectedItem().toString().toLowerCase();
 			resUsernameFieldRegister = MV.getRV().getNameField().getText();
 			resPasswordFieldRegister = String.valueOf(MV.getRV().getPasswordField().getPassword());
+			assert !resRegisterComboBoxMV.isEmpty() && !resUsernameFieldRegister.isEmpty() && !resPasswordFieldRegister.isEmpty(): "Los datos del registro principal no deben estar vacíos";
 			
 			if(resUsernameFieldRegister.isEmpty() || resPasswordFieldRegister.isEmpty()) {
 				JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Información", JOptionPane.WARNING_MESSAGE); //INFORMATION_MESSAGE, QUESTION_MESSAGE, WARNING_MESSAGE, ERROR_MESSAGE
@@ -313,6 +308,7 @@ public class Controller implements ActionListener{
 			 */
 			name = (String) collectedMenData.get(0);
 			age = (String) collectedMenData.get(1);
+			assert (Integer.parseInt(age) < 18): "La edad no debe ser menor a 18";
 			email = (String) collectedMenData.get(2);
 			height = (String) collectedMenData.get(3);
 			bornDate = Toolkit.parseDateAsString((String)collectedMenData.get(4));
@@ -564,6 +560,17 @@ public class Controller implements ActionListener{
 			break;
 		
 		case "deleteUserAdmin":
+			String targetUsernameToDel = JOptionPane.showInputDialog(null, "Ingrese el usuario a eliminar", "Eliminar usuario", JOptionPane.INFORMATION_MESSAGE);
+			User targetUserToDel = DTO.searchUser(targetUsernameToDel);
+			int confirm = JOptionPane.showConfirmDialog(null, "Está seguro de querer borrar a " + targetUserToDel.getFirstName() + "?", "Eliminar usuario", JOptionPane.YES_NO_OPTION);
+			//System.out.println(confirm);
+			if(confirm == 0) {
+				DTO.deleteUser(targetUserToDel);
+				JOptionPane.showMessageDialog(null, "Usuario eliminado exitosamente", "Eliminar usuario", JOptionPane.INFORMATION_MESSAGE);
+			}else {
+				JOptionPane.showMessageDialog(null, "Operación cancelada", "Eliminar usuario", JOptionPane.INFORMATION_MESSAGE);
+			}
+			
 			break;
 		
 		case "searchUserAdmin":
@@ -581,6 +588,11 @@ public class Controller implements ActionListener{
 		
 		}
 		
+	}
+	
+	public void setMainInvariants() {
+		assert MV != null: "La vista principal no debe ser nula";
+		assert DTO != null: "El DTO no puede ser nulo";
 	}
 	
 }
