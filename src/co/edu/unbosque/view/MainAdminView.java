@@ -231,4 +231,13 @@ public class MainAdminView extends JPanel{
 		this.mainTextAreaAdmin = mainTextAreaAdmin;
 	}
 
+	public JButton getGenerateReportAdminView() {
+		return generateReportAdminView;
+	}
+
+	public void setGenerateReportAdminView(JButton generateReportAdminView) {
+		this.generateReportAdminView = generateReportAdminView;
+	}
+
+	
 }

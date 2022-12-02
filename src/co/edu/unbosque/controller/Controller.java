@@ -130,6 +130,9 @@ public class Controller implements ActionListener{
 		MV.getMAV().getSearchAdminView().addActionListener(this);
 		MV.getMAV().getSearchAdminView().setActionCommand("searchUserAdmin");
 		
+		MV.getMAV().getGenerateReportAdminView().addActionListener(this);
+		MV.getMAV().getGenerateReportAdminView().setActionCommand("generateReportAdmin");
+		
 		MV.getMAV().getBackButtonAdmin().addActionListener(this);
 		MV.getMAV().getBackButtonAdmin().setActionCommand("backAdminView");
 		
@@ -574,6 +577,11 @@ public class Controller implements ActionListener{
 			break;
 		
 		case "searchUserAdmin":
+			break;
+			
+		case "generateReportAdmin":
+			DTO.generateReportPDF();
+			JOptionPane.showMessageDialog(null, "Reporte generado correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
 			break;
 			
 		case "backAdminView":

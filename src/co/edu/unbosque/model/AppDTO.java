@@ -609,6 +609,9 @@ public class AppDTO implements AppDAO{
 		return returnableRow;
         
 	}
+	public void generateReportPDF() {
+		Toolkit.generatePDF(file);
+	}
 
 
 }

@@ -13,6 +13,11 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import com.aspose.cells.Chart;
+import com.aspose.cells.PageLayoutAlignmentType;
+import com.aspose.cells.Workbook;
+import com.aspose.cells.Worksheet;
+
 /**
  * Clase que contiene funcionalidades varias
  * @author J&M Sistemas
@@ -106,6 +111,19 @@ public class Toolkit {
 			System.out.println("Error con las direcciones de correo");
 		}catch(MessagingException e) {
 			System.out.println("Error creando el mensaje del correo");
+			e.printStackTrace();
+		}
+	}
+	
+	public static void generatePDF(String file) {
+		try {
+			Workbook wb = new Workbook(file);
+			wb.save("data/Reporte.pdf");
+			//Worksheet ws = wb.getWorksheets().get(0);
+			//Chart chart = ws.getCharts().get(0);
+			//chart.toPdf("data/Reporte.pdf", 7, 7, PageLayoutAlignmentType.CENTER, PageLayoutAlignmentType.CENTER);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
