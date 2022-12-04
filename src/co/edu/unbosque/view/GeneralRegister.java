@@ -17,6 +17,13 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.text.DateFormatter;
 
+
+/**
+ * <h2>GeneralRegister</h2>
+ * Clase con todos los elementos graficos del panel de registro
+ * 
+ * @author J&M Sistemas 
+ */
 public class GeneralRegister extends JPanel{
 	
 	protected JLabel title;
@@ -41,6 +48,9 @@ public class GeneralRegister extends JPanel{
 	protected JButton exitButton;
 	protected JButton nextButton;
 	
+	/**
+	 * Se instancian y se les da coordenadas a los elementos
+	 */
 	public GeneralRegister() {
 		
 		title = new JLabel("Registrarse");
@@ -137,7 +147,10 @@ public class GeneralRegister extends JPanel{
 		add(nextButton);
 		
 	}
-	
+	/**
+	 * Añade toda la informacion que esta en los JTextArea en un ArrayList
+	 * @return
+	 */
 	public ArrayList<Object> collectData(){
 		ArrayList<Object> returnableData = new ArrayList<Object>();
 		returnableData.add(usernameRegField.getText());
@@ -149,6 +162,9 @@ public class GeneralRegister extends JPanel{
 		return returnableData;
 		
 	}
+	/**
+	 * Se ponen los JTextArea en blanco de nuevo
+	 */
 	public void resetAllGeneralFields() {
 		setUsernameRegField("");
 		setAgeRegField("");

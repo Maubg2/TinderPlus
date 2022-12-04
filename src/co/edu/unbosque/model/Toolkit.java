@@ -39,7 +39,8 @@ public class Toolkit {
 	
 	//Check 
 	/**
-	 * Metodo para verificar que en una cadena no haya nigun
+	 * Metodo para verificar que en una cadena no haya nigun caracter especial
+	 * o numero retornando un booleano
 	 * 
 	 * @param data
 	 * @return
@@ -53,6 +54,12 @@ public class Toolkit {
 		return true;
 	}
 	
+	/**
+	 * Verifica que el formato de los nombre este bien (dos espacios, tres palabras)
+	 * 
+	 * @param name
+	 * @return
+	 */
 	public static boolean isFullName(String name) {
 		int spacesInName = 0;
 		for(char x : name.toCharArray()) {
@@ -64,6 +71,13 @@ public class Toolkit {
 		return spacesInName == 2 ? true: false;
 	}
 	
+	/**
+	 * Metodo que verifica que la cadena no tenaga letras
+	 * retornando un booleano
+	 * 
+	 * @param data
+	 * @return
+	 */
 	public static boolean checkNumber(String data) {
 		for(String x : charactersArray) {
 			if(data.contains(x)) {
@@ -73,6 +87,13 @@ public class Toolkit {
 		return true;
 	}
 	
+	/**
+	 * Metodo para ingresar una cadena de texto (que cumpla con el formato)
+	 * y retorna una fecha.
+	 * 
+	 * @param date
+	 * @return
+	 */
 	public static Date parseDateAsString(String date) {
 		SimpleDateFormat ft = new SimpleDateFormat("dd/MM/yyyy");
 		Date parsedDate = null;
@@ -85,6 +106,11 @@ public class Toolkit {
 		return parsedDate;
 	}
 	
+	/**
+	 * Sirve para enviar correos de bienvenida usando el correo que le ingresen
+	 * 
+	 * @param target
+	 */
 	public static void sendMail(User target) {
 		Properties prop = new Properties();
 		prop.setProperty("mail.smtp.host", "smtp.gmail.com");
@@ -121,6 +147,11 @@ public class Toolkit {
 		}
 	}
 	
+	/**
+	 * Sirve para crear el reporte en formato PDF
+	 * 
+	 * @param file
+	 */
 	public static void generatePDF(String file) {
 		try {
 			Workbook wb = new Workbook(file);

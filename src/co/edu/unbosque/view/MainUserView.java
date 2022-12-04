@@ -10,6 +10,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
+/**
+ * <h2>MainUserView</h2>
+ * Clase que contiene los elementos graficos de la vista principal del usuario
+ * 
+ * @author J&M Sistemas
+ */
 public class MainUserView extends JPanel{
 	
 	private JLabel titleUserView;
@@ -48,9 +54,10 @@ public class MainUserView extends JPanel{
 	
 	//Cambio de imágenes
 	private String randomImage;
-	
-	
 
+	/**
+	 * Contructor de la clase
+	 */
 	public MainUserView() {
 		
 		setLayout(null);
@@ -59,7 +66,9 @@ public class MainUserView extends JPanel{
 		setBackground(Color.decode("#FFA1CF"));
 		
 	}
-	
+	/**
+	 * Metodo para instanciar y darle coordenadas a los componentes
+	 */
 	public void funcionar() {
 		
 	/*	titleUserView = new JLabel("Tinder");
@@ -155,7 +164,9 @@ public class MainUserView extends JPanel{
 		add(divorceUserData);
 		
 	}
-	
+	/**
+	 * Metodo para poner una imagen random en la vista principal
+	 */
 	public void updateImage() {
 		mainImage = new ImageIcon(randomImage);
 		
@@ -163,7 +174,9 @@ public class MainUserView extends JPanel{
 		mainPrueba.setBounds(224, 60, 150, 130);
 		add(mainPrueba);
 	}
-	
+	/**
+	 * Metodo para poner en los JLabels los datos de un usuario
+	 */
 	public void updateUserData() {
 		nameUserData.setText(nameValue);
 		usernameUserData.setText(usernameValue);

@@ -10,6 +10,12 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
+/**
+ * <h2>LoginView</h2>
+ * Clase con todos los elementos graficos del panel de iniciar sesion
+ * 
+ * @author J&M Sistemas
+ */
 public class LoginView extends JPanel{
 	
 	private JLabel loginTitle;
@@ -20,7 +26,9 @@ public class LoginView extends JPanel{
 	private JButton backButton;
 	private JButton loginButton;
 	
-	
+	/**
+	 * Constructor de la clase
+	 */
 	public LoginView() {
 		
 		setLayout(null);
@@ -30,6 +38,9 @@ public class LoginView extends JPanel{
 		
 	}
 	
+	/**
+	 * Se instancian y se les da coordenadas a los elementos
+	 */
 	public void funcionar() {
 		
 		//Title

@@ -10,12 +10,19 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
-
+/**
+ * <h2>MenRegisterPanel</h2>
+ * Clase creada para especificamente para el registro de hombres
+ * 
+ * @author J&M Sistemas 
+ */
 public class MenRegisterPanel extends GeneralRegister{
 	
 	private JLabel salaryMRPLabel;
 	private JTextField salaryMRPField;
-	
+	/**
+	 * Contructor de la clase
+	 */
 	public MenRegisterPanel() {
 		
 		super();
@@ -33,13 +40,18 @@ public class MenRegisterPanel extends GeneralRegister{
 		add(salaryMRPField);
 		
 	}
-	
+	/**
+	 * Retorna los datos recolectados (en un ArrayList) en el proceso de registro
+	 * @return
+	 */
 	public ArrayList<Object> collectMenData(){
 		ArrayList<Object> returnableData = super.collectData();//Traer los datos del super
 		returnableData.add(salaryMRPField.getText()); //Añadir los datos propios de la clase hija
 		return returnableData;
 	}
-	
+	/**
+	 * Dejar todos los campos de texto en blanco
+	 */
 	public void resetAllFieldsMRV() {
 		super.resetAllGeneralFields();
 		salaryMRPField.setText("");

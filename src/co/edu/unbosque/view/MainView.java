@@ -10,6 +10,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+/**
+ * <h2>MainView</h2>
+ * Clase que contiene, instancia y les da coordenadas a todos las vistas (JPanels)
+ * 
+ * @author J&M Sistemas
+ */
 public class MainView extends JFrame{
 	
 	private MainPanel MP;
@@ -29,7 +35,9 @@ public class MainView extends JFrame{
 	final int yPanel = 80;
 	final int widthPanel = 600;
 	final int heightPanel = 400;
-	
+	/**
+	 * Contructor de la clase  e instanciacion de la imagen de fondo
+	 */
 	public MainView() {
 		
 		//Wallpaper
@@ -56,7 +64,9 @@ public class MainView extends JFrame{
 		setResizable(false);
 		setVisible(true);
 	}
-	
+	/**
+	 * Instanciacion y coordenadas de todos los paneles
+	 */
 	public void funcionar() {
 		
 		MP = new MainPanel();

@@ -14,6 +14,7 @@ import javax.swing.border.LineBorder;
 
 
 /**
+ * <h2>MainPanel</h2>
  * Clase que contiene los botones de iniciar sesion y registrarse
  * 
  * @author J&M Sistemas
@@ -26,7 +27,9 @@ public class MainPanel extends JPanel{
 	
 	private JLabel tinderTitle; 
 	private ImageIcon image;
-	
+	/**
+	 * Constructor de la clase 
+	 */
 	public MainPanel() {
 		
 		setLayout(null);
@@ -36,7 +39,9 @@ public class MainPanel extends JPanel{
 		setBackground(Color.decode("#FFA1CF"));
 		
 	}
-	
+	/**
+	 * Para instanciar y darle coordenadas a los componentes
+	 */
 	public void funcionar() {
 		LogInButton = new JButton("Iniciar sesión");
 		LogInButton.setBounds(100, 260, 170, 30);

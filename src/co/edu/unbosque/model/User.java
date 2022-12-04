@@ -6,6 +6,12 @@ import java.util.Date;
 
 public class User {
 	
+	/**
+	 * <h2>User</h2>
+	 * Clase que contiene todos los atributos de un usuario en general.
+	 * 
+	 */
+	
 	protected String username;
 	protected String name;
 	protected String firstName;
@@ -26,6 +32,21 @@ public class User {
 	protected int sentLikesAmount = 0;
 	protected int matchAmount = 0;
 	
+	/**
+	 * Contructor creado para pasarle los atributos de una mujer sin la altura
+	 * 
+	 * @param username
+	 * @param age
+	 * @param mail
+	 * @param gender
+	 * @param name
+	 * @param isAvailable
+	 * @param bornDate
+	 * @param password
+	 * @param isDivorced
+	 * @param likesAmount
+	 * @param likesSent
+	 */
 	//Para mujeres (Sin altura)
 	public User(String username, int age, String mail, String gender, String name, boolean isAvailable, Date bornDate, String password, boolean isDivorced, int likesAmount, int likesSent) {
 		this.username = username;
@@ -41,6 +62,23 @@ public class User {
 		divideName();
 		setupData();
 	}
+	
+	/**
+	 * Contructor creado para pasarle los atributos de una mujer con la altura
+	 * 
+	 * @param username
+	 * @param age
+	 * @param mail
+	 * @param gender
+	 * @param name
+	 * @param isAvailable
+	 * @param bornDate
+	 * @param password
+	 * @param isDivorced
+	 * @param height
+	 * @param likesAmount
+	 * @param likesSent
+	 */
 	//Para mujeres (Con altura)
 	public User(String username, int age, String mail, String gender, String name, boolean isAvailable, Date bornDate, String password, boolean isDivorced, int height, int likesAmount, int likesSent) {
 		this.username = username;
@@ -58,6 +96,22 @@ public class User {
 		setupData();
 	}
 	
+	
+	/**
+	 * Contructor creado para pasarle los atributos de un hombre
+	 * 
+	 * @param username
+	 * @param age
+	 * @param mail
+	 * @param gender
+	 * @param name
+	 * @param height
+	 * @param isAvailable
+	 * @param bornDate
+	 * @param password
+	 * @param likesAmount
+	 * @param likesSent
+	 */
 	//Para hombres, porque la altura es obligatoria
 	public User(String username, int age, String mail, String gender, String name, int height, boolean isAvailable, Date bornDate, String password, int likesAmount, int likesSent) {
 		this.username = username;
@@ -77,12 +131,21 @@ public class User {
 		
 	}
 	
+	/**
+	 * Dividir el nombre y los dos apellidos en tres cadenas diferentes
+	 * 
+	 */
 	public void divideName() {
 		String[] names = name.split(" ");
 		firstName = names[0];
 		firstSurname = names[1];
 		lastSurname = names[2];
 	}
+	
+	/**
+	 * Sirve para simplificar las palabras hombre y mujer 
+	 * para agregarlos al archivo CSV respetando el formato
+	 */
 	public void setupData() {
 		gender = gender.toLowerCase();
 		switch(gender){
@@ -104,12 +167,16 @@ public class User {
 		}
 	}
 	
-	
+	/**
+	 * Manda like
+	 */
 	//Por completar
 	public void sendLike() {
 		
 	}
-	
+	/**
+	 * Manda disLike
+	 */
 	//por completar
 	public void sendDislike() {
 		

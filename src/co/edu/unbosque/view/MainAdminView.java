@@ -11,6 +11,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
+/**
+ * <h2>MainAdminView</h2>
+ *  Clase con todos los elementos graficos del panel del administrador
+ * 
+ * @author J&M Sistemas
+ */
 public class MainAdminView extends JPanel{
 	
 	private JLabel titleAdminView;
@@ -37,6 +43,9 @@ public class MainAdminView extends JPanel{
 	private JTextArea mainTextAreaAdmin;
 	private JScrollPane mainScrollAdmin;
 	
+	/**
+	 * Contructor de la clase 
+	 */
 	public MainAdminView() {
 		
 		setLayout(null);
@@ -45,7 +54,9 @@ public class MainAdminView extends JPanel{
 		setBackground(Color.decode("#FFA1CF"));
 		
 	}
-	
+	/**
+	 * Para instanciar y darle coordenadas a los elementos
+	 */
 	public void funcionar() {
 		
 		titleAdminView = new JLabel("Administrador");

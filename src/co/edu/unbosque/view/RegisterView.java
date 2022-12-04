@@ -11,7 +11,12 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
-
+/**
+ * <h2>RegisterView</h2>
+ * JPanel para identificar si el usuario que se quiere registrar es hombre o mujer
+ * 
+ * @author J&M Sistemas 
+ */
 public class RegisterView extends JPanel{
 	
 	private JButton leaveButton;
@@ -27,14 +32,18 @@ public class RegisterView extends JPanel{
 	
 	private JTextField nameField;
 	private JPasswordField passwordField;
-	
+	/**
+	 * Contructor de la clase
+	 */
 	public RegisterView() {
 		setLayout(null);
 		funcionar();
 		setVisible(false);
 		setBackground(Color.decode("#FFA1CF"));
 	}
-	
+	/**
+	 * Metodo para instanciar y darle coordenadas a los elementos
+	 */
 	public void funcionar() {
 		title = new JLabel("Registrarse");
 		title.setFont(new Font("Times New Roman", Font.BOLD, 30));

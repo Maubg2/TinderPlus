@@ -10,12 +10,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
-
+/**
+ * <h2>WomenRegisterPanel</h2>
+ * Clase creada para especificamente para el registro de mujeres
+ * 
+ * @author J&M Sistemas 
+ */
 public class WomenRegisterPanel extends GeneralRegister{
 	
 	private JCheckBox divorcedWRPCheck;
 	private JLabel divorcedWRPLabel;
-	
+	/**
+	 * Constructor de la clase
+	 */
 	public WomenRegisterPanel() {
 		
 		super();
@@ -37,12 +44,18 @@ public class WomenRegisterPanel extends GeneralRegister{
 		add(divorcedWRPLabel);
 		
 	}
-	
+	/**
+	 * Retorna los datos recolectados (en un ArrayList) en el proceso de registro
+	 * @return
+	 */
 	public ArrayList<Object> collectWomenData(){
 		ArrayList<Object> returnableData = super.collectData();
 		returnableData.add(divorcedWRPCheck.isSelected());
 		return returnableData;
 	}
+	/**
+	 * Dejar todos los campos de texto en blanco
+	 */
 	public void resetAllDataWRV() {
 		super.resetAllGeneralFields();
 		divorcedWRPCheck.setSelected(false);
