@@ -4,12 +4,18 @@ import java.io.BufferedReader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.CSVWriter;
@@ -675,7 +681,65 @@ public class AppDTO implements AppDAO{
 	 * Encargado de generar archivo PDF con el reporte correspondiente.
 	 */
 	public void generateReportPDF() {
-		Toolkit.generatePDF(file);
+		//Toolkit.generatePDF(file);
+		
+		Document doc = new Document();
+		
+		try {
+			PdfWriter.getInstance(doc, new FileOutputStream("data/reporte.pdf"));
+			doc.open();
+			PdfPTable table = new PdfPTable(4);
+			/*
+			table.addCell("ID");
+			table.addCell("Nombre");
+			table.addCell("Primer apellido");
+			table.addCell("Segundo apellido");
+			table.addCell("Sexo");
+			table.addCell("Usuario");
+			table.addCell("Contraseña");
+			table.addCell("Correo");
+			table.addCell("Nacimiento");
+			table.addCell("Edad");
+			table.addCell("Ingresos");
+			table.addCell("Divorciada");
+			table.addCell("Número de likes");
+			table.addCell("Número de likes enviados");
+			table.addCell("Número de matches");
+			table.addCell("Estado");
+			table.addCell("Altura");
+			*/
+			
+			try {
+				reader = new BufferedReader(new FileReader(file));
+				
+				while((line = reader.readLine()) != null) {
+					
+					String[] row = line.split(";");
+					table.addCell(row[0]);
+					table.addCell(row[1]);
+					table.addCell(row[2]);
+					table.addCell(row[3]);
+					/*
+					for(int i = 0; i < row.length; i++) {
+						table.addCell(row[i]);
+					}
+					*/
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}	
+			}
+			
+			doc.add(table);
+			doc.close();
+		}catch(Exception e) {
+			
+		}
 	}
 
 
