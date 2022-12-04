@@ -17,8 +17,9 @@ import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 
 /**
+ * <h2>AppDTO</h2>
  * 
- * Clase que sirve de central de datos
+ * Clase que sirve de central de datos e implementa el CRUD de la interface AppDAO
  * @author J&M Sistemas
  *
  */
@@ -33,10 +34,17 @@ public class AppDTO implements AppDAO{
 	//Images
 	final String srcImage[] = {"media/RostroHombre10.jpg", "media/RostroHombre2.jpg", "media/RostroHombre3.jpg", "media/RostroHombre4.jpg", "media/RostroHombre7.jpg", "media/RostroHombre8.jpg", "media/RostroMujer10.png", "media/RostroMujer2.jpg", "media/RostroMujer3.jpg", "media/RostroMujer4.jpg", "media/RostroMujer5.jpg", "media/RostroMujer8.jpg", "media/RostroMujer9.jpg"};
 	
+	/**
+	 * Contructor de la clase
+	 */
 	public AppDTO() {
 		
 	}
 	
+	/**
+	 * Metodo para añadir un nuevo usuario a la base de datos (archivo CSV)
+	 * instanciando a FileWriter para escribir en el archivo el nuevo usuario.
+	 */
 	@Override
 	public void addUser(User user) {
 		
@@ -148,7 +156,10 @@ public class AppDTO implements AppDAO{
 		
 		
 	}
-
+	/**
+	 * Sirve para buscar usuarios en el archivo CSV usando como palabra clave
+	 * el nombre de usuario de la persona, luego retorna el usuario que coincide.
+	 */
 	@Override
 	public User searchUser(String username) {
 		
@@ -191,6 +202,10 @@ public class AppDTO implements AppDAO{
 
 	}
 	
+	/**
+	 * Sirve para buscar un administrador en el archivo CSV usando como palabra clave
+	 * el nombre de usuario de la persona, luego retorna el administrador que coincide.
+	 */
 	public Admin searchAdmin(String username) {
 		Admin returnableAdmin = null;
 		
@@ -211,6 +226,11 @@ public class AppDTO implements AppDAO{
 
 	//Para agregar o quitar likes
 	//Como modificar una celda?
+	
+	/**
+	 * Para modificar usuario, el metodo pide el parametro que se quiere cambiar, el nombre 
+	 * de usuario de quien se va a modificar y el nuevo valor del parametro a modificar.
+	 */
 	@Override
 	public void modifyUser(String newValue,  String username, String parameter) throws IOException {
 		int row = Integer.parseInt(retrieveUserID(username))+ 1;
@@ -331,6 +351,9 @@ public class AppDTO implements AppDAO{
 		*/
 	}
 	
+	/**
+	 * Metodo que retorna el ID del usuario que se ingrese.
+	 */
 	public String retrieveUserID(String username) {
 		
 		String returnableId = null; 
@@ -349,6 +372,10 @@ public class AppDTO implements AppDAO{
 		return returnableId;
 	}
 
+	/**
+	 * Metodo que pide el usuario para borrar todos los datos si es que coincide con
+	 * alguno en la base de datos.
+	 */
 	@Override
 	public void deleteUser(User user) {
 		CSVReader reader2;
@@ -374,6 +401,9 @@ public class AppDTO implements AppDAO{
 
 	
 	//Debug
+	/**
+	 * Sirve para mostrar la base de datos en la consola con la finalidad de hacer debug.
+	 */
 	@Override
 	public void displayDB() {
 		try {
@@ -420,6 +450,10 @@ public class AppDTO implements AppDAO{
 		}
 	}
 
+	/**
+	 * Metodo que sirve para verificar que las credenciales de un usuario
+	 * coincidan (verifica en base de datos), retornando un true si es correcto y un false de lo contrario.
+	 */
 	@Override
 	public boolean checkUser(String username, String password) {
 		try {
@@ -447,6 +481,9 @@ public class AppDTO implements AppDAO{
 		}
 	}
 
+	/**
+	 * Metodo para verificar las credenciales del administrador.
+	 */
 	@Override
 	public boolean checkAdmin(String username, String password) {
 		
@@ -459,12 +496,23 @@ public class AppDTO implements AppDAO{
 		return false;
 	}
 	
+	/**
+	 * En base a la cantidad de imagenes que estan cargadas, se busca un numero cualquiera
+	 * en ese rango y retorna una imagen al azar.
+	 * @return
+	 */
 	public String retrieveImageSrc() {
 		int randomIndex = (int)(Math.random()*(srcImage.length));
 		//System.out.println(randomIndex); //
 		return srcImage[randomIndex];
 	}
 	
+
+	/**
+	 * Metodo que retorna un usuario al azar dependiendo de la cantidad de usuarios 
+	 * ingresados en la base de datos.
+	 * @return
+	 */
 	public User retrieveRandomUser() {
 		int randomIndex = (int)(Math.random()*(howManyInDataBase()));
 		User randomUser = null;
@@ -530,6 +578,11 @@ public class AppDTO implements AppDAO{
 		return randomUser;
 	}
 	
+	
+	/**
+	 * Metodo que retorna la cantidad de personas que estan en la base de datos.
+	 * @return
+	 */
 	public int howManyInDataBase() {
 		int contador = 0;
 		
@@ -554,6 +607,7 @@ public class AppDTO implements AppDAO{
 	/**
 	 * Método usado exclusivamente para añadir un usuario administrador
 	 * @param admin
+	 * 
 	 */
 	public void addUser(Admin admin) {
 		FileWriter out;
@@ -582,6 +636,13 @@ public class AppDTO implements AppDAO{
 		} 
 	}
 	
+	/**
+	 * Metodo que retorna todos los datos de una fila en base
+	 * al ID que se ingrese.  
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public String[] retrieveAbsoluteRow(int id) {
 		CSVReader reader;
 		String[] returnableRow = null;
@@ -609,6 +670,10 @@ public class AppDTO implements AppDAO{
 		return returnableRow;
         
 	}
+	
+	/**
+	 * Encargado de generar archivo PDF con el reporte correspondiente.
+	 */
 	public void generateReportPDF() {
 		Toolkit.generatePDF(file);
 	}

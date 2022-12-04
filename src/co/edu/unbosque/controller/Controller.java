@@ -19,6 +19,20 @@ import co.edu.unbosque.model.UserFactory;
 import co.edu.unbosque.model.Woman;
 import co.edu.unbosque.view.MainView;
 
+/**
+ * <h2>Controller</h2>
+ *  Esta clase sirve para ser un pasamanos entre el paquete de modelo
+ * (model) y el paquete de vista (view). En esta clase se maneja todo
+ * lo que son los oyentes (ActionListener) de los botones (del JFrame y de los JPanel).
+ * 
+ * <b>Nota:</b> Estan presentes objetos de las clases: MainView
+ * (contiene todos los JPanel) y AppDTO (clase principal de modelo).
+ * 
+ * @author J&M Sistemas (Yeferson Acosta, Jessica Bogota, Johann Toncon, Mauricio Beltran)
+ * @see ActionListener
+ */
+
+
 public class Controller implements ActionListener{
 	
 	private MainView MV;
@@ -58,7 +72,7 @@ public class Controller implements ActionListener{
 	Admin actualAdmin;
 	
 	/**
-	 * Constructor de la clase, usado para instanciar los objetos importnates como la vista 
+	 * Constructor de la clase, usado para instanciar los objetos importantes como la vista 
 	 * principal, el DTO y el usuario Admin
 	 */
 	public Controller() {
@@ -76,6 +90,10 @@ public class Controller implements ActionListener{
 		
 	}
 	
+	/**
+	 * Método para darle el nombre a cada boton del programa y 
+	 * asignarles el oyente (ActionListener)
+	 */
 	public void setListeners() {
 		
 		//MainPanel Listeners
@@ -137,7 +155,10 @@ public class Controller implements ActionListener{
 		MV.getMAV().getBackButtonAdmin().setActionCommand("backAdminView");
 		
 	}
-
+	
+	/**
+	 * Sirve para asignarle la funcion que cada boton debe cumplir en el programa 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -598,6 +619,9 @@ public class Controller implements ActionListener{
 		
 	}
 	
+	/**
+	 * Sirve para... 
+	 */
 	public void setMainInvariants() {
 		assert MV != null: "La vista principal no debe ser nula";
 		assert DTO != null: "El DTO no puede ser nulo";

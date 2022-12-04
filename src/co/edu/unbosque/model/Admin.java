@@ -1,10 +1,26 @@
 package co.edu.unbosque.model;
 
+/**
+ * <h2>Admin</h2>
+ * Clase que sirve como modelo del administrador, asi que contiene todos los atributos del administrador.
+ * 
+ * @author J&M Sistemas
+ */
+
 public class Admin {
 	
 	private String name;
 	private String username;
 	private String password;
+	
+	/**
+	 * El constructor de la clase es usado para pasarle los atributos de administrador
+	 * en los parametros del mismo.
+	 * 
+	 * @param name
+	 * @param username
+	 * @param password
+	 */
 	
 	public Admin(String name, String username, String password) {
 		this.name = name;

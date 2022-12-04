@@ -19,7 +19,7 @@ import com.aspose.cells.Workbook;
 import com.aspose.cells.Worksheet;
 
 /**
- * Clase que contiene funcionalidades varias
+ * Clase que contiene funcionalidades varias.
  * @author J&M Sistemas
  *
  */
@@ -37,7 +37,13 @@ public class Toolkit {
 		
 	}
 	
-	//Check String
+	//Check 
+	/**
+	 * Metodo para verificar que en una cadena no haya nigun
+	 * 
+	 * @param data
+	 * @return
+	 */
 	public static boolean checkData(String data) {
 		for(String x : illegalChar) {
 			if(data.contains(x)) {
