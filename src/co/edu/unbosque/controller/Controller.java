@@ -180,7 +180,8 @@ public class Controller implements ActionListener{
 		case "loginButtonLoginView": //Boton de inicio de sesión
 			//1. Traer datos de los fields
 			
-			//Para probar: User: juagalindo Password: P,u[2PyrjNM_:_9
+			//Para probar: User: carloscarrasco Password: $ZAX/d&-=!9@?MQ
+
 			
 			String username = MV.getLV().getUserField().getText();
 			String password = String.valueOf(MV.getLV().getPsswdField().getPassword()); //ValueOf porque getPassword devuelve un array de chars
